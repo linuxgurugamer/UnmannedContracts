@@ -1,0 +1,18 @@
+{
+	"NAME":"Contract Pack: Unmanned Contracts",
+	"URL":"http://ksp-avc.cybutek.net/version.php?id=135",
+	"DOWNLOAD":"https://kerbalstuff.com/mod/651/Contrace%20Pack:%20Unmanned%20Contracts/download/0.2.1",
+	"VERSION":
+	{
+		"MAJOR":<MAJOR>,
+		"MINOR":<MINOR>,
+		"PATCH":<PATCH>,
+		"BUILD":0
+	},
+	"KSP_VERSION":
+	{
+		"MAJOR":0,
+		"MINOR":90,
+		"PATCH":0
+	}
+}

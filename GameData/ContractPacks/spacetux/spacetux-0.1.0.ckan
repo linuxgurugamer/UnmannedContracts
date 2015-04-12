@@ -1,0 +1,17 @@
+{
+  "spec_version": 1,
+  "identifier": "spacetux",
+  "x_netkan_license_ok": true,
+  "resources": {
+    "kerbalstuff": "https://kerbalstuff.com/mod/647/Spacetux%20-%20Unmanned%20Contracts"
+  },
+  "ksp_version": "0.90",
+  "name": "Spacetux - Unmanned Contracts",
+  "license": "CC-BY-NC-SA-4.0",
+  "abstract": "Extensive series of unmanned contracts",
+  "author": "linuxgurugamer",
+  "version": "0.2.0",
+  "download": "https://kerbalstuff.com/mod/647/Spacetux%20-%20Unmanned%20Contracts/download/0.1.0",
+  "x_generated_by": "netkan",
+  "download_size": 83245
+}

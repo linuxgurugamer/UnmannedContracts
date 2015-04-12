@@ -1,0 +1,20 @@
+Version 0.1.0 - Initial Release
+	Contracts for unmanned missions to the Mun
+Version 0.1.1 - Update for weights
+	Weights were much too high, reduced to 10 on all except for the initial one
+	updated .version file for AVC
+Version 0.1.2 - Updated rewards
+	Rewards were reduced, they were much too high
+Version 0.2.0 - Minmus addition
+	Updated cancellable- Only the first contract in the Mun config should be uncancellable and undeclinable
+	Added CONTRACT_GROUP
+	Moved agency into separate cfg file
+	added group.cfg for the contract group
+	Added SpaceTuxGroup group to all contracts
+	Added Minmus contracts
+Version 0.3.0 - MOAR contracts
+	Added contracts for all planetary bodies
+	Added requirement for  CoherentContracts
+Version 0.3.1
+	Renamed CHANGELOG
+	Updated AVC
