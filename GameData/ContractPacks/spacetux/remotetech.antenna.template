@@ -1,0 +1,8 @@
+	REQUIREMENT:NEEDS[RemoteTech]
+	{
+		name = PartUnlocked
+		type = PartUnlocked
+
+		part = <ANTENNA>
+	}
+

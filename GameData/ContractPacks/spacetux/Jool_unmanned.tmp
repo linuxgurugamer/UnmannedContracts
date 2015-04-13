@@ -10,62 +10,69 @@
 
 ///////////////////////////////////////
 //
-// Unmanned Mun Flyby
+// Unmanned Jool Flyby
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = FirstUnmannedMunFlyby
+	name = FirstUnmannedJoolFlyby
 	group = SpaceTuxGroup
-	title = Perform an  unmanned Mun flyby mission.
-	description = Send a probe to perform a flyby of the Mun! This will be a strong demonstration of our 	capabilities, and an important 'first' for our space program! 
+	title = Perform an  unmanned Jool flyby mission.
+
+	// description = Send a probe to perform a flyby of the Jool! This will be a strong demonstration of our capabilities, and an important 'first' for our space program! 
+	topic = flyby
+	subject = Jool
+	motivation = future landing
+
 	notes = Complete the following:
-	synopsis = Send a probe to space within the SOI of the Mun
-	completedMessage = You did it! We've send a probe on a Mun flyby
+	synopsis = Send a probe to space within the SOI of Jool
+	completedMessage = You did it! We've send a probe on a Jool flyby
 	agent = Space Penguins, Inc
 	cancellable = false
 	declinable = false
 	prestige = Significant
-	targetBody = Mun
+	targetBody = Jool
 	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
 	rewardReputation = 5.0
 	rewardFunds = Random(18000.0, 22000.0)
 	advanceFunds = Random(9000.0, 11000.0)
-	weight = 99.0
+	// weight = 99.0
 
 	REQUIREMENT
 	{
-		name = ReachSpace5701
+		name = ReachSpace5781
 		type = ReachSpace
 	}
-	
+
+<REMOTETECH>
+
 	PARAMETER
 	{
-		name = Sequence5701
+		name = Sequence5781
 		type = Sequence
-		title = Mun Flyby
+		title = Jool Flyby
 
 		PARAMETER
 		{
-			name = VesselParameterGroup5701
+			name = VesselParameterGroup5781
 			type = VesselParameterGroup
-			define = Mun Flyby
+			define = Jool Flyby
 			PARAMETER
 			{
-				name = HasCrew5701
+				name = HasCrew5781
 				type = HasCrew
 				maxCrew = 0
 				minCrew = 0
 			}
 			PARAMETER
 			{
-				name = ReachState5701
-				type = ReachState
-				// maxAltitude = 50000
-				targetBody = Mun
+                                name = ReachState5781
+                                type = ReachState
+                                // maxAltitude = 50000
+                                targetBody = Jool
 			}
 		}
 	}
@@ -73,19 +80,23 @@ CONTRACT_TYPE
 
 ///////////////////////////////////////
 //
-// Unmanned Mun Impact
+// Unmanned Jool Impact
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = FirstMunImpact
+	name = FirstJoolImpact
 	group = SpaceTuxGroup
-	title = Crash a probe on Mun!
-	description = We want to get larger, clearer closeup pictures.  To do this, we need to send a probe to crash on Mun.
-	This will be a monumental achievement.
+	title = Crash a probe on Jool!
+	// description = We want to get larger, clearer closeup pictures.  To do this, we need to send a probe to crash on Jool.  This will be a monumental achievement.
+
+	topic = crash
+	subject = Jool
+	motivation = moar pictures
+
 	notes = Complete the following:
-	synopsis = Launch an unmanned probe and have it crash onto the Mun
+	synopsis = Launch an unmanned probe and have it crash onto the Jool
 	completedMessage = Future generations will remember this day.
 	agent = Space Penguins, Inc
 	// agent = Research & Development Department
@@ -97,7 +108,7 @@ CONTRACT_TYPE
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = Mun
+	targetBody = Jool
 	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
@@ -108,33 +119,36 @@ CONTRACT_TYPE
 	
 	REQUIREMENT
 	{
-		name = ReachSpace5702
+		name = ReachSpace5782
 		type = ReachSpace
 	}
 
 	// If we've landed, then no need to crash a probe into it
 	REQUIREMENT
 	{
-		name = Nolanding5702
+		name = Nolanding5782
 		type = Landing
-		targetBody = Mun
+		targetBody = Jool
 		invertRequirement = true
 	}
+
+<REMOTETECH>
+
 	PARAMETER
 	{
-		name = VPG5702
+		name = VPG5782
 		type = VesselParameterGroup
 
 		PARAMETER
 		{
-			name = HasCrew5702
+			name = HasCrew5782
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
 		}	
 		PARAMETER
 		{
-			name = ReachState57021
+			name = ReachState57821
 			type = ReachState
 
 			// Minimum and maximum altitudes.
@@ -151,7 +165,7 @@ CONTRACT_TYPE
 		}
 		PARAMETER
 		{
-			name = VesselDestroyed5701
+			name = VesselDestroyed5781
 			type = VesselDestroyed
 			mustImpactTerrain = true
 			completeInSequence = true
@@ -162,19 +176,23 @@ CONTRACT_TYPE
 
 ///////////////////////////////////////
 //
-// Unmanned Mun Targeted Impact
+// Unmanned Jool Targeted Impact
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = TargetedMunImpact
+	name = TargetedJoolImpact
 	group = SpaceTuxGroup
-	title = Crash a probe on Mun on a target!
-	description = We want to get larger, clearer closeup pictures of a potential landing site.  To do this, we need to send a probe to crash on Mun and impact at the specified location.
-	This will be a monumental achievement.
+	title = Crash a probe on Jool on a target!
+	// description = We want to get larger, clearer closeup pictures of a potential landing site.  To do this, we need to send a probe to crash on Jool and impact at the specified location.  This will be a monumental achievement.
+
+	topic = crash
+	subject = Jool
+	motivation = moar pictures
+
 	notes = Complete the following:
-	synopsis = Launch an unmanned probe and have it crash onto the Mun at a specific location
+	synopsis = Launch an unmanned probe and have it crash onto the Jool at a specific location
 	completedMessage = Future generations will remember this day.
 	agent = Space Penguins, Inc
 	// agent = Research & Development Department
@@ -186,7 +204,7 @@ CONTRACT_TYPE
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = Mun
+	targetBody = Jool
 	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
@@ -197,26 +215,26 @@ CONTRACT_TYPE
 	
 	REQUIREMENT
 	{
-		name = ReachSpace5703
+		name = ReachSpace5783
 		type = ReachSpace
 	}
 	// If we've landed, then no need to crash a probe into it
 	REQUIREMENT
 	{
-		name = Nolanding5703
+		name = Nolanding5783
 		type = Landing
-		targetBody = Mun
+		targetBody = Jool
 		invertRequirement = true
 	}
 	
 	REQUIREMENT
 	{
-	    name = CompleteContract5703
+	    name = CompleteContract5783
 	    type = CompleteContract
 
 	    // The type of contract being checked.  This can either be a
 	    // ContractConfigurator contract type or a standard contract type (class).
-	    contractType = FirstMunImpact
+	    contractType = FirstJoolImpact
 
 	    // The minimum number of times the given contract type must have been
 	    // completed before the requirement is met.
@@ -235,21 +253,23 @@ CONTRACT_TYPE
 	    cooldownDuration = 10d
 	}
 	
+<REMOTETECH>
+
 	PARAMETER
 	{
-		name = VPG5703
+		name = VPG5783
 		type = VesselParameterGroup
 
 		PARAMETER
 		{
-			name = HasCrew5703
+			name = HasCrew5783
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
 		}	
 		PARAMETER
 		{
-			name = ReachState5703
+			name = ReachState5783
 			type = ReachState
 
 			// Minimum and maximum altitudes.
@@ -266,7 +286,7 @@ CONTRACT_TYPE
 		}
 		PARAMETER
 		{
-			name = VesselDestroyed5703
+			name = VesselDestroyed5783
 			type = VesselDestroyed
 			mustImpactTerrain = true
 			completeInSequence = true
@@ -275,7 +295,7 @@ CONTRACT_TYPE
 
 	BEHAVIOUR
 	{
-		name = WaypointGenerator5703
+		name = WaypointGenerator5783
 		type = WaypointGenerator
 		
 		// Use this to generate a waypoint with random coordinates
@@ -323,13 +343,18 @@ CONTRACT_TYPE
 
 CONTRACT_TYPE
 {
-	name = FirstMunOrbitalSat
+	name = FirstJoolOrbitalSat
 	group = SpaceTuxGroup
-	title = Orbit the first artificial satellite around the Mun.
-	description = We want you to place a satellite in orbit around Mun. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+	title = Orbit the first artificial satellite around the Jool.
+	// description = We want you to place a satellite in orbit around Jool. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+
+	topic = satellites
+	subject = Jool
+	motivation = test
+
 	notes = Complete the following:
-	synopsis = Put a satellite in orbit around the Mun.
-	completedMessage = You did it! We've placed a satellite in orbit around the Mun! This will be a day long remembered.
+	synopsis = Put a satellite in orbit around the Jool.
+	completedMessage = You did it! We've placed a satellite in orbit around the Jool! This will be a day long remembered.
 	agent = Space Penguins, Inc
 	cancellable = true
 	declinable = true
@@ -344,26 +369,29 @@ CONTRACT_TYPE
 	weight = 10.0
 	REQUIREMENT
 	{
-		name = ReachSpace5704
+		name = ReachSpace5784
 		type = ReachSpace
 	}
+	
+<REMOTETECH>
+
 	PARAMETER
 	{
-		name = VPG5704
+		name = VPG5784
 		type = VesselParameterGroup
 		define = Satellite
 		PARAMETER
 		{
-			name = HasCrew5704
+			name = HasCrew5784
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
 		}
 		PARAMETER
 		{
-			name = Orbit5704
+			name = Orbit5784
 			type = Orbit
-			targetBody = Mun
+			targetBody = Jool
 			minAltitude = 8000			
 		}
 	}
@@ -371,19 +399,246 @@ CONTRACT_TYPE
 
 ///////////////////////////////////////
 //
-// Unmanned Mun Landing
+// Polar Orbit a satellite
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = FirstUnmannedMunLanding
+	name = PolarJoolOrbitalSat
 	group = SpaceTuxGroup
-	title = Land a probe on the Mun!
-	description = Time to do an unmanned landing on the Mun!
-This will be a monumental achievement.
+	title = Orbit the first artificial satellite in a polar orbit around the Jool.
+	// description = We want you to place a satellite in orbit around Jool. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+
+	topic = satellites
+	subject = Jool
+	motivation = test
+
 	notes = Complete the following:
-	synopsis = Launch an unmanned probe and have it land on the Mun
+	synopsis = Put a satellite in orbit around the Jool.
+	completedMessage = You did it! We've placed a satellite in orbit around the Jool! This will be a day long remembered.
+	agent = Space Penguins, Inc
+	cancellable = true
+	declinable = true
+	prestige = Significant
+	targetBody = Kerbin
+	maxCompletions = 1
+	maxSimultaneous = 1
+	rewardScience = 25.0
+	rewardReputation = 15.0
+	rewardFunds = Random(28000.0, 32000.0)
+	advanceFunds = Random(9000.0, 11000.0)
+	weight = 10.0
+	REQUIREMENT
+	{
+		name = ReachSpace5784
+		type = ReachSpace
+	}
+	
+<REMOTETECH>
+
+	PARAMETER
+	{
+		name = VPG5784
+		type = VesselParameterGroup
+		define = Satellite
+		PARAMETER
+		{
+			name = HasCrew5784
+			type = HasCrew
+			maxCrew = 0
+			minCrew = 0
+		}
+		PARAMETER
+		{
+			name = PolarOrbit5784
+			type = ReachSpecificOrbit
+			index = 0
+			deviationWindow = 3
+		}
+	}
+	BEHAVIOUR
+	{
+		name = PolarOrbitGenerator
+		type = OrbitGenerator
+
+		RANDOM_ORBIT
+		{
+			targetBody = Jool
+			type = POLAR
+			difficulty = 1
+		}
+	}
+}
+
+///////////////////////////////////////
+//
+// Equatorial Orbit a satellite
+//
+///////////////////////////////////////
+
+CONTRACT_TYPE
+{
+	name = EquatorialJoolOrbitalSat
+	group = SpaceTuxGroup
+	title = Orbit the first artificial satellite in an equatorial orbit around the Jool.
+	// description = We want you to place a satellite in orbit around Jool. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+
+	topic = satellites
+	subject = Jool
+	motivation = test
+
+	notes = Complete the following:
+	synopsis = Put a satellite in orbit around the Jool.
+	completedMessage = You did it! We've placed a satellite in orbit around the Jool! This will be a day long remembered.
+	agent = Space Penguins, Inc
+	cancellable = true
+	declinable = true
+	prestige = Significant
+	targetBody = Kerbin
+	maxCompletions = 1
+	maxSimultaneous = 1
+	rewardScience = 25.0
+	rewardReputation = 15.0
+	rewardFunds = Random(28000.0, 32000.0)
+	advanceFunds = Random(9000.0, 11000.0)
+	weight = 10.0
+	REQUIREMENT
+	{
+		name = ReachSpace5784
+		type = ReachSpace
+	}
+	
+<REMOTETECH>
+
+	PARAMETER
+	{
+		name = VPG5784
+		type = VesselParameterGroup
+		define = Satellite
+		PARAMETER
+		{
+			name = HasCrew5784
+			type = HasCrew
+			maxCrew = 0
+			minCrew = 0
+		}
+		PARAMETER
+		{
+			name = EquatorialOrbit5784
+			type = ReachSpecificOrbit
+			index = 0
+			deviationWindow = 3
+		}
+	}
+	BEHAVIOUR
+	{
+		name = EquatorialOrbitGenerator
+		type = OrbitGenerator
+
+		RANDOM_ORBIT
+		{
+			targetBody = Jool
+			type = EQUATORIAL 
+			difficulty = 1
+		}
+	}
+}
+
+///////////////////////////////////////
+//
+// Kolniya Orbit a satellite
+//
+///////////////////////////////////////
+
+CONTRACT_TYPE
+{
+	name = KolniyaJoolOrbitalSat
+	group = SpaceTuxGroup
+	title = Orbit the first artificial satellite in a Kolniya orbit around the Jool.
+	// description = We want you to place a satellite in orbit around Jool. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+
+	topic = satellites
+	subject = Jool
+	motivation = test
+
+	notes = Complete the following:
+	synopsis = Put a satellite in orbit around the Jool.
+	completedMessage = You did it! We've placed a satellite in orbit around the Jool! This will be a day long remembered.
+	agent = Space Penguins, Inc
+	cancellable = true
+	declinable = true
+	prestige = Significant
+	targetBody = Kerbin
+	maxCompletions = 1
+	maxSimultaneous = 1
+	rewardScience = 25.0
+	rewardReputation = 15.0
+	rewardFunds = Random(28000.0, 32000.0)
+	advanceFunds = Random(9000.0, 11000.0)
+	weight = 10.0
+	REQUIREMENT
+	{
+		name = ReachSpace5784
+		type = ReachSpace
+	}
+	
+<REMOTETECH>
+
+	PARAMETER
+	{
+		name = VPG5784
+		type = VesselParameterGroup
+		define = Satellite
+		PARAMETER
+		{
+			name = HasCrew5784
+			type = HasCrew
+			maxCrew = 0
+			minCrew = 0
+		}
+		PARAMETER
+		{
+			name = KolniyaOrbit5784
+			type = ReachSpecificOrbit
+			index = 0
+			deviationWindow = 3
+		}
+	}
+	BEHAVIOUR
+	{
+		name = EquatorialOrbitGenerator
+		type = OrbitGenerator
+
+		RANDOM_ORBIT
+		{
+			targetBody = Jool
+			type = KOLNIYA
+			difficulty = 1
+		}
+	}
+}
+
+// <LANDING_FOLLOWS>
+///////////////////////////////////////
+//
+// Unmanned Jool Landing
+//
+///////////////////////////////////////
+
+CONTRACT_TYPE
+{
+	name = FirstUnmannedJoolLanding
+	group = SpaceTuxGroup
+	title = Land a probe on the Jool!
+	// description = Time to do an unmanned landing on the Jool!
+
+	topic = landing
+	subject = JoolSrf
+	motivation = want to be sure the Jool will support a ship (isn't made out of dust) before we send a manned craft.  This will be a monumental achievement.
+
+	notes = Complete the following:
+	synopsis = Launch an unmanned probe and have it land on the Jool
 	completedMessage = Future generations will remember this day.
 	agent = Space Penguins, Inc
 	// agent = Research & Development Department
@@ -395,7 +650,7 @@ This will be a monumental achievement.
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = Mun
+	targetBody = Jool
 	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
@@ -406,26 +661,26 @@ This will be a monumental achievement.
 	
 	REQUIREMENT
 	{
-		name = ReachSpace5705
+		name = ReachSpace5785
 		type = ReachSpace
 	}
 	// If we've landed, then no need to land again 
 	REQUIREMENT
 	{
-		name = Nolanding5705
+		name = Nolanding5785
 		type = Landing
-		targetBody = Mun
+		targetBody = Jool
 		invertRequirement = true
 	}
 	
 	REQUIREMENT
 	{
-	    name = CompleteContract5706
+	    name = CompleteContract5786
 	    type = CompleteContract
 
 	    // The type of contract being checked.  This can either be a
 	    // ContractConfigurator contract type or a standard contract type (class).
-	    contractType = FirstMunImpact
+	    contractType = FirstJoolImpact
 
 	    // The minimum number of times the given contract type must have been
 	    // completed before the requirement is met.
@@ -444,14 +699,16 @@ This will be a monumental achievement.
 	    cooldownDuration = 10d
 	}
 	
+<REMOTETECH>
+	
 	PARAMETER
 	{
-		name = VPG_5706
+		name = VPG_5786
 		type = VesselParameterGroup
 
 		PARAMETER
 		{
-			name = HasCrew5706
+			name = HasCrew5786
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
@@ -460,7 +717,7 @@ This will be a monumental achievement.
 
 		PARAMETER
 		{
-			name = ReachState5706
+			name = ReachState5786
 			type = ReachState
 			situation = LANDED
 			completeInSequence = true
@@ -471,19 +728,23 @@ This will be a monumental achievement.
 
 ///////////////////////////////////////
 //
-// Unmanned Mun Targeted Landing
+// Unmanned Jool Targeted Landing
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = TargetedUnmannedMunLanding
+	name = TargetedUnmannedJoolLanding
 	group = SpaceTuxGroup
-	title = Land a probe on the Mun at a specified target!
-	description = Time to do a targeted, unmanned landing on the Mun!
-	This will be a monumental achievement.
+	title = Land a probe on the Jool at a specified target!
+	// description = Time to do a targeted, unmanned landing on the Jool!  This will be a monumental achievement.
+
+	topic = landing
+	subject = JoolSrf
+	motivation = want to be get close-up pictures of a projected landing site for a future manned landing on Jool. 
+
 	notes = Complete the following:
-	synopsis = Launch an unmanned probe and have it land on the Mun
+	synopsis = Launch an unmanned probe and have it land on the Jool
 	completedMessage = Future generations will remember this day.
 	agent = Space Penguins, Inc
 
@@ -494,7 +755,7 @@ CONTRACT_TYPE
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = Mun
+	targetBody = Jool
 	maxCompletions = 5
 	maxSimultaneous = 2
 	rewardScience = 25.0
@@ -505,18 +766,18 @@ CONTRACT_TYPE
 	
 	REQUIREMENT
 	{
-		name = ReachSpace5707
+		name = ReachSpace<NUM_7>
 		type = ReachSpace
 	}
 	
 	REQUIREMENT
 	{
-	    name = CompleteContract5707
+	    name = CompleteContract<NUM_7>
 	    type = CompleteContract
 
 	    // The type of contract being checked.  This can either be a
 	    // ContractConfigurator contract type or a standard contract type (class).
-	    contractType = FirstMunImpact
+	    contractType = FirstJoolImpact
 
 	    // The minimum number of times the given contract type must have been
 	    // completed before the requirement is met.
@@ -535,16 +796,18 @@ CONTRACT_TYPE
 	    cooldownDuration = 10d
 	}
 	
+<REMOTETECH>
+	
 	PARAMETER
 	{
-		name = VPG_5707
+		name = VPG_<NUM_7>
 		type = VesselParameterGroup
 		// nightingale - I'd let the title default itself in most cases
 		//  title = Vessel: Any; Duration: 1 year
 
 		PARAMETER
 		{
-			name = HasCrew5707
+			name = HasCrew<NUM_7>
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
@@ -553,7 +816,7 @@ CONTRACT_TYPE
 
 		PARAMETER
 		{
-			name = ReachState5707
+			name = ReachState<NUM_7>
 			type = ReachState
 			situation = LANDED
 			completeInSequence = true
@@ -562,7 +825,7 @@ CONTRACT_TYPE
 	}
 	BEHAVIOUR
 	{
-		name = WaypointGenerator5708
+		name = WaypointGenerator<NUM_8>
 		type = WaypointGenerator
 		
 		// Use this to generate a waypoint with random coordinates

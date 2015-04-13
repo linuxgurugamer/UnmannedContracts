@@ -3,16 +3,40 @@
 
 bodies="Minmus Moho Eve Gilly Duna Ike Dres Jool Laythe Tylo Vall Bop Eeloo Pol"
 
-template=template.cfg
+template=cfg.template
+rtgiga=remotetech.giga.template
+rtantenna=remotetech.antenna.template
+rt=remotetech.template
+
 gasbodies="Jool"
+
+
+MohoRemoteTech="commDish"
+DresRemoteTech="RTLongDish2"
+DunaRemoteTech="commDish"
+EveRemoteTech="commDish"
+GillyRemoteTech="commDish"
+IkeRemoteTech="commDish"
+
+JoolRemoteTech="AnyGigaDish"
+EelooRemoteTech="AnyGigaDish"
+LaytheRemoteTech="AnyGigaDish"
+TyloRemoteTech="AnyGigaDish"
+VallRemoteTech="AnyGigaDish"
+BopRemoteTech="AnyGigaDish"
+PolRemoteTech="AnyGigaDish"
+
 
 files=""
 cnt=570
 for i in $bodies; do
-	fname=${i}_unmanned.cfg
-	files="$files $fname"
+	fname=${i}_unmanned.tmp
+	fnameFinal=${i}_unmanned.cfg
+	rm -f $fname $fnameFinal
+
+	files="$files $fnameFinal"
 	if [ "$1" = "clean" ]; then
-		rm  $fname 
+		rm  $fnameFinal
 		rm -f Makefile
 	else
 		cp $template $fname
@@ -22,6 +46,23 @@ for i in $bodies; do
 			s="<NUM_${n}>"
 			sed -i "" "s/${s}/${cnt}${n}/g" $fname
 		done
+
+		oIFS=$IFS
+		IFS=
+		while IFS=$'\n' read -r var ; do
+			if [[ "$var" =~ "<REMOTETECH>" ]]; then
+				v="${i}RemoteTech"
+				if [ "${!v}" == "AnyGigaDish" ]; then
+					cat $rtgiga >>$fnameFinal
+				else
+					sed "s/<ANTENNA>/${!v}/g" <$rtantenna >>$fnameFinal
+				fi
+				cat $rt >>$fnameFinal	
+			else
+				echo $var >>$fnameFinal
+			fi
+		done <$fname
+		IFS=$oIFS
 	fi
 done
 

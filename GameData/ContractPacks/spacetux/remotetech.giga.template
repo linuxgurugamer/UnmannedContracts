@@ -1,0 +1,22 @@
+	REQUIREMENT:NEEDS[RemoteTech]
+	{
+		name = AnyGigaDish
+		type = Any
+
+		REQUIREMENT
+		{
+			name = PartUnlocked
+			type = PartUnlocked
+
+			part = RTGigaDish1
+		}
+
+		REQUIREMENT
+		{
+			name = PartUnlocked
+			type = PartUnlocked
+
+			part = RTGigaDish2
+		}
+	}
+

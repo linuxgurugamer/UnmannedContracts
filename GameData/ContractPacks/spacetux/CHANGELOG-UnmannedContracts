@@ -18,3 +18,6 @@ Version 0.3.0 - MOAR contracts
 Version 0.3.1
 	Renamed CHANGELOG
 	Updated AVC
+version 0.3.4
+	Added missing parameters
+	Added RemoteTech requirements

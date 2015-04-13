@@ -10,62 +10,69 @@
 
 ///////////////////////////////////////
 //
-// Unmanned Mun Flyby
+// Unmanned Duna Flyby
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = FirstUnmannedMunFlyby
+	name = FirstUnmannedDunaFlyby
 	group = SpaceTuxGroup
-	title = Perform an  unmanned Mun flyby mission.
-	description = Send a probe to perform a flyby of the Mun! This will be a strong demonstration of our 	capabilities, and an important 'first' for our space program! 
+	title = Perform an  unmanned Duna flyby mission.
+
+	// description = Send a probe to perform a flyby of the Duna! This will be a strong demonstration of our capabilities, and an important 'first' for our space program! 
+	topic = flyby
+	subject = Duna
+	motivation = future landing
+
 	notes = Complete the following:
-	synopsis = Send a probe to space within the SOI of the Mun
-	completedMessage = You did it! We've send a probe on a Mun flyby
+	synopsis = Send a probe to space within the SOI of Duna
+	completedMessage = You did it! We've send a probe on a Duna flyby
 	agent = Space Penguins, Inc
 	cancellable = false
 	declinable = false
 	prestige = Significant
-	targetBody = Mun
+	targetBody = Duna
 	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
 	rewardReputation = 5.0
 	rewardFunds = Random(18000.0, 22000.0)
 	advanceFunds = Random(9000.0, 11000.0)
-	weight = 99.0
+	// weight = 99.0
 
 	REQUIREMENT
 	{
-		name = ReachSpace5701
+		name = ReachSpace5751
 		type = ReachSpace
 	}
-	
+
+<REMOTETECH>
+
 	PARAMETER
 	{
-		name = Sequence5701
+		name = Sequence5751
 		type = Sequence
-		title = Mun Flyby
+		title = Duna Flyby
 
 		PARAMETER
 		{
-			name = VesselParameterGroup5701
+			name = VesselParameterGroup5751
 			type = VesselParameterGroup
-			define = Mun Flyby
+			define = Duna Flyby
 			PARAMETER
 			{
-				name = HasCrew5701
+				name = HasCrew5751
 				type = HasCrew
 				maxCrew = 0
 				minCrew = 0
 			}
 			PARAMETER
 			{
-				name = ReachState5701
-				type = ReachState
-				// maxAltitude = 50000
-				targetBody = Mun
+                                name = ReachState5751
+                                type = ReachState
+                                // maxAltitude = 50000
+                                targetBody = Duna
 			}
 		}
 	}
@@ -73,19 +80,23 @@ CONTRACT_TYPE
 
 ///////////////////////////////////////
 //
-// Unmanned Mun Impact
+// Unmanned Duna Impact
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = FirstMunImpact
+	name = FirstDunaImpact
 	group = SpaceTuxGroup
-	title = Crash a probe on Mun!
-	description = We want to get larger, clearer closeup pictures.  To do this, we need to send a probe to crash on Mun.
-	This will be a monumental achievement.
+	title = Crash a probe on Duna!
+	// description = We want to get larger, clearer closeup pictures.  To do this, we need to send a probe to crash on Duna.  This will be a monumental achievement.
+
+	topic = crash
+	subject = Duna
+	motivation = moar pictures
+
 	notes = Complete the following:
-	synopsis = Launch an unmanned probe and have it crash onto the Mun
+	synopsis = Launch an unmanned probe and have it crash onto the Duna
 	completedMessage = Future generations will remember this day.
 	agent = Space Penguins, Inc
 	// agent = Research & Development Department
@@ -97,7 +108,7 @@ CONTRACT_TYPE
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = Mun
+	targetBody = Duna
 	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
@@ -108,33 +119,36 @@ CONTRACT_TYPE
 	
 	REQUIREMENT
 	{
-		name = ReachSpace5702
+		name = ReachSpace5752
 		type = ReachSpace
 	}
 
 	// If we've landed, then no need to crash a probe into it
 	REQUIREMENT
 	{
-		name = Nolanding5702
+		name = Nolanding5752
 		type = Landing
-		targetBody = Mun
+		targetBody = Duna
 		invertRequirement = true
 	}
+
+<REMOTETECH>
+
 	PARAMETER
 	{
-		name = VPG5702
+		name = VPG5752
 		type = VesselParameterGroup
 
 		PARAMETER
 		{
-			name = HasCrew5702
+			name = HasCrew5752
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
 		}	
 		PARAMETER
 		{
-			name = ReachState57021
+			name = ReachState57521
 			type = ReachState
 
 			// Minimum and maximum altitudes.
@@ -151,7 +165,7 @@ CONTRACT_TYPE
 		}
 		PARAMETER
 		{
-			name = VesselDestroyed5701
+			name = VesselDestroyed5751
 			type = VesselDestroyed
 			mustImpactTerrain = true
 			completeInSequence = true
@@ -162,19 +176,23 @@ CONTRACT_TYPE
 
 ///////////////////////////////////////
 //
-// Unmanned Mun Targeted Impact
+// Unmanned Duna Targeted Impact
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = TargetedMunImpact
+	name = TargetedDunaImpact
 	group = SpaceTuxGroup
-	title = Crash a probe on Mun on a target!
-	description = We want to get larger, clearer closeup pictures of a potential landing site.  To do this, we need to send a probe to crash on Mun and impact at the specified location.
-	This will be a monumental achievement.
+	title = Crash a probe on Duna on a target!
+	// description = We want to get larger, clearer closeup pictures of a potential landing site.  To do this, we need to send a probe to crash on Duna and impact at the specified location.  This will be a monumental achievement.
+
+	topic = crash
+	subject = Duna
+	motivation = moar pictures
+
 	notes = Complete the following:
-	synopsis = Launch an unmanned probe and have it crash onto the Mun at a specific location
+	synopsis = Launch an unmanned probe and have it crash onto the Duna at a specific location
 	completedMessage = Future generations will remember this day.
 	agent = Space Penguins, Inc
 	// agent = Research & Development Department
@@ -186,7 +204,7 @@ CONTRACT_TYPE
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = Mun
+	targetBody = Duna
 	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
@@ -197,26 +215,26 @@ CONTRACT_TYPE
 	
 	REQUIREMENT
 	{
-		name = ReachSpace5703
+		name = ReachSpace5753
 		type = ReachSpace
 	}
 	// If we've landed, then no need to crash a probe into it
 	REQUIREMENT
 	{
-		name = Nolanding5703
+		name = Nolanding5753
 		type = Landing
-		targetBody = Mun
+		targetBody = Duna
 		invertRequirement = true
 	}
 	
 	REQUIREMENT
 	{
-	    name = CompleteContract5703
+	    name = CompleteContract5753
 	    type = CompleteContract
 
 	    // The type of contract being checked.  This can either be a
 	    // ContractConfigurator contract type or a standard contract type (class).
-	    contractType = FirstMunImpact
+	    contractType = FirstDunaImpact
 
 	    // The minimum number of times the given contract type must have been
 	    // completed before the requirement is met.
@@ -235,21 +253,23 @@ CONTRACT_TYPE
 	    cooldownDuration = 10d
 	}
 	
+<REMOTETECH>
+
 	PARAMETER
 	{
-		name = VPG5703
+		name = VPG5753
 		type = VesselParameterGroup
 
 		PARAMETER
 		{
-			name = HasCrew5703
+			name = HasCrew5753
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
 		}	
 		PARAMETER
 		{
-			name = ReachState5703
+			name = ReachState5753
 			type = ReachState
 
 			// Minimum and maximum altitudes.
@@ -266,7 +286,7 @@ CONTRACT_TYPE
 		}
 		PARAMETER
 		{
-			name = VesselDestroyed5703
+			name = VesselDestroyed5753
 			type = VesselDestroyed
 			mustImpactTerrain = true
 			completeInSequence = true
@@ -275,7 +295,7 @@ CONTRACT_TYPE
 
 	BEHAVIOUR
 	{
-		name = WaypointGenerator5703
+		name = WaypointGenerator5753
 		type = WaypointGenerator
 		
 		// Use this to generate a waypoint with random coordinates
@@ -323,13 +343,18 @@ CONTRACT_TYPE
 
 CONTRACT_TYPE
 {
-	name = FirstMunOrbitalSat
+	name = FirstDunaOrbitalSat
 	group = SpaceTuxGroup
-	title = Orbit the first artificial satellite around the Mun.
-	description = We want you to place a satellite in orbit around Mun. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+	title = Orbit the first artificial satellite around the Duna.
+	// description = We want you to place a satellite in orbit around Duna. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+
+	topic = satellites
+	subject = Duna
+	motivation = test
+
 	notes = Complete the following:
-	synopsis = Put a satellite in orbit around the Mun.
-	completedMessage = You did it! We've placed a satellite in orbit around the Mun! This will be a day long remembered.
+	synopsis = Put a satellite in orbit around the Duna.
+	completedMessage = You did it! We've placed a satellite in orbit around the Duna! This will be a day long remembered.
 	agent = Space Penguins, Inc
 	cancellable = true
 	declinable = true
@@ -344,26 +369,29 @@ CONTRACT_TYPE
 	weight = 10.0
 	REQUIREMENT
 	{
-		name = ReachSpace5704
+		name = ReachSpace5754
 		type = ReachSpace
 	}
+	
+<REMOTETECH>
+
 	PARAMETER
 	{
-		name = VPG5704
+		name = VPG5754
 		type = VesselParameterGroup
 		define = Satellite
 		PARAMETER
 		{
-			name = HasCrew5704
+			name = HasCrew5754
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
 		}
 		PARAMETER
 		{
-			name = Orbit5704
+			name = Orbit5754
 			type = Orbit
-			targetBody = Mun
+			targetBody = Duna
 			minAltitude = 8000			
 		}
 	}
@@ -371,19 +399,246 @@ CONTRACT_TYPE
 
 ///////////////////////////////////////
 //
-// Unmanned Mun Landing
+// Polar Orbit a satellite
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = FirstUnmannedMunLanding
+	name = PolarDunaOrbitalSat
 	group = SpaceTuxGroup
-	title = Land a probe on the Mun!
-	description = Time to do an unmanned landing on the Mun!
-This will be a monumental achievement.
+	title = Orbit the first artificial satellite in a polar orbit around the Duna.
+	// description = We want you to place a satellite in orbit around Duna. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+
+	topic = satellites
+	subject = Duna
+	motivation = test
+
 	notes = Complete the following:
-	synopsis = Launch an unmanned probe and have it land on the Mun
+	synopsis = Put a satellite in orbit around the Duna.
+	completedMessage = You did it! We've placed a satellite in orbit around the Duna! This will be a day long remembered.
+	agent = Space Penguins, Inc
+	cancellable = true
+	declinable = true
+	prestige = Significant
+	targetBody = Kerbin
+	maxCompletions = 1
+	maxSimultaneous = 1
+	rewardScience = 25.0
+	rewardReputation = 15.0
+	rewardFunds = Random(28000.0, 32000.0)
+	advanceFunds = Random(9000.0, 11000.0)
+	weight = 10.0
+	REQUIREMENT
+	{
+		name = ReachSpace5754
+		type = ReachSpace
+	}
+	
+<REMOTETECH>
+
+	PARAMETER
+	{
+		name = VPG5754
+		type = VesselParameterGroup
+		define = Satellite
+		PARAMETER
+		{
+			name = HasCrew5754
+			type = HasCrew
+			maxCrew = 0
+			minCrew = 0
+		}
+		PARAMETER
+		{
+			name = PolarOrbit5754
+			type = ReachSpecificOrbit
+			index = 0
+			deviationWindow = 3
+		}
+	}
+	BEHAVIOUR
+	{
+		name = PolarOrbitGenerator
+		type = OrbitGenerator
+
+		RANDOM_ORBIT
+		{
+			targetBody = Duna
+			type = POLAR
+			difficulty = 1
+		}
+	}
+}
+
+///////////////////////////////////////
+//
+// Equatorial Orbit a satellite
+//
+///////////////////////////////////////
+
+CONTRACT_TYPE
+{
+	name = EquatorialDunaOrbitalSat
+	group = SpaceTuxGroup
+	title = Orbit the first artificial satellite in an equatorial orbit around the Duna.
+	// description = We want you to place a satellite in orbit around Duna. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+
+	topic = satellites
+	subject = Duna
+	motivation = test
+
+	notes = Complete the following:
+	synopsis = Put a satellite in orbit around the Duna.
+	completedMessage = You did it! We've placed a satellite in orbit around the Duna! This will be a day long remembered.
+	agent = Space Penguins, Inc
+	cancellable = true
+	declinable = true
+	prestige = Significant
+	targetBody = Kerbin
+	maxCompletions = 1
+	maxSimultaneous = 1
+	rewardScience = 25.0
+	rewardReputation = 15.0
+	rewardFunds = Random(28000.0, 32000.0)
+	advanceFunds = Random(9000.0, 11000.0)
+	weight = 10.0
+	REQUIREMENT
+	{
+		name = ReachSpace5754
+		type = ReachSpace
+	}
+	
+<REMOTETECH>
+
+	PARAMETER
+	{
+		name = VPG5754
+		type = VesselParameterGroup
+		define = Satellite
+		PARAMETER
+		{
+			name = HasCrew5754
+			type = HasCrew
+			maxCrew = 0
+			minCrew = 0
+		}
+		PARAMETER
+		{
+			name = EquatorialOrbit5754
+			type = ReachSpecificOrbit
+			index = 0
+			deviationWindow = 3
+		}
+	}
+	BEHAVIOUR
+	{
+		name = EquatorialOrbitGenerator
+		type = OrbitGenerator
+
+		RANDOM_ORBIT
+		{
+			targetBody = Duna
+			type = EQUATORIAL 
+			difficulty = 1
+		}
+	}
+}
+
+///////////////////////////////////////
+//
+// Kolniya Orbit a satellite
+//
+///////////////////////////////////////
+
+CONTRACT_TYPE
+{
+	name = KolniyaDunaOrbitalSat
+	group = SpaceTuxGroup
+	title = Orbit the first artificial satellite in a Kolniya orbit around the Duna.
+	// description = We want you to place a satellite in orbit around Duna. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+
+	topic = satellites
+	subject = Duna
+	motivation = test
+
+	notes = Complete the following:
+	synopsis = Put a satellite in orbit around the Duna.
+	completedMessage = You did it! We've placed a satellite in orbit around the Duna! This will be a day long remembered.
+	agent = Space Penguins, Inc
+	cancellable = true
+	declinable = true
+	prestige = Significant
+	targetBody = Kerbin
+	maxCompletions = 1
+	maxSimultaneous = 1
+	rewardScience = 25.0
+	rewardReputation = 15.0
+	rewardFunds = Random(28000.0, 32000.0)
+	advanceFunds = Random(9000.0, 11000.0)
+	weight = 10.0
+	REQUIREMENT
+	{
+		name = ReachSpace5754
+		type = ReachSpace
+	}
+	
+<REMOTETECH>
+
+	PARAMETER
+	{
+		name = VPG5754
+		type = VesselParameterGroup
+		define = Satellite
+		PARAMETER
+		{
+			name = HasCrew5754
+			type = HasCrew
+			maxCrew = 0
+			minCrew = 0
+		}
+		PARAMETER
+		{
+			name = KolniyaOrbit5754
+			type = ReachSpecificOrbit
+			index = 0
+			deviationWindow = 3
+		}
+	}
+	BEHAVIOUR
+	{
+		name = EquatorialOrbitGenerator
+		type = OrbitGenerator
+
+		RANDOM_ORBIT
+		{
+			targetBody = Duna
+			type = KOLNIYA
+			difficulty = 1
+		}
+	}
+}
+
+// <LANDING_FOLLOWS>
+///////////////////////////////////////
+//
+// Unmanned Duna Landing
+//
+///////////////////////////////////////
+
+CONTRACT_TYPE
+{
+	name = FirstUnmannedDunaLanding
+	group = SpaceTuxGroup
+	title = Land a probe on the Duna!
+	// description = Time to do an unmanned landing on the Duna!
+
+	topic = landing
+	subject = DunaSrf
+	motivation = want to be sure the Duna will support a ship (isn't made out of dust) before we send a manned craft.  This will be a monumental achievement.
+
+	notes = Complete the following:
+	synopsis = Launch an unmanned probe and have it land on the Duna
 	completedMessage = Future generations will remember this day.
 	agent = Space Penguins, Inc
 	// agent = Research & Development Department
@@ -395,7 +650,7 @@ This will be a monumental achievement.
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = Mun
+	targetBody = Duna
 	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
@@ -406,26 +661,26 @@ This will be a monumental achievement.
 	
 	REQUIREMENT
 	{
-		name = ReachSpace5705
+		name = ReachSpace5755
 		type = ReachSpace
 	}
 	// If we've landed, then no need to land again 
 	REQUIREMENT
 	{
-		name = Nolanding5705
+		name = Nolanding5755
 		type = Landing
-		targetBody = Mun
+		targetBody = Duna
 		invertRequirement = true
 	}
 	
 	REQUIREMENT
 	{
-	    name = CompleteContract5706
+	    name = CompleteContract5756
 	    type = CompleteContract
 
 	    // The type of contract being checked.  This can either be a
 	    // ContractConfigurator contract type or a standard contract type (class).
-	    contractType = FirstMunImpact
+	    contractType = FirstDunaImpact
 
 	    // The minimum number of times the given contract type must have been
 	    // completed before the requirement is met.
@@ -444,14 +699,16 @@ This will be a monumental achievement.
 	    cooldownDuration = 10d
 	}
 	
+<REMOTETECH>
+	
 	PARAMETER
 	{
-		name = VPG_5706
+		name = VPG_5756
 		type = VesselParameterGroup
 
 		PARAMETER
 		{
-			name = HasCrew5706
+			name = HasCrew5756
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
@@ -460,7 +717,7 @@ This will be a monumental achievement.
 
 		PARAMETER
 		{
-			name = ReachState5706
+			name = ReachState5756
 			type = ReachState
 			situation = LANDED
 			completeInSequence = true
@@ -471,19 +728,23 @@ This will be a monumental achievement.
 
 ///////////////////////////////////////
 //
-// Unmanned Mun Targeted Landing
+// Unmanned Duna Targeted Landing
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = TargetedUnmannedMunLanding
+	name = TargetedUnmannedDunaLanding
 	group = SpaceTuxGroup
-	title = Land a probe on the Mun at a specified target!
-	description = Time to do a targeted, unmanned landing on the Mun!
-	This will be a monumental achievement.
+	title = Land a probe on the Duna at a specified target!
+	// description = Time to do a targeted, unmanned landing on the Duna!  This will be a monumental achievement.
+
+	topic = landing
+	subject = DunaSrf
+	motivation = want to be get close-up pictures of a projected landing site for a future manned landing on Duna. 
+
 	notes = Complete the following:
-	synopsis = Launch an unmanned probe and have it land on the Mun
+	synopsis = Launch an unmanned probe and have it land on the Duna
 	completedMessage = Future generations will remember this day.
 	agent = Space Penguins, Inc
 
@@ -494,7 +755,7 @@ CONTRACT_TYPE
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = Mun
+	targetBody = Duna
 	maxCompletions = 5
 	maxSimultaneous = 2
 	rewardScience = 25.0
@@ -505,18 +766,18 @@ CONTRACT_TYPE
 	
 	REQUIREMENT
 	{
-		name = ReachSpace5707
+		name = ReachSpace<NUM_7>
 		type = ReachSpace
 	}
 	
 	REQUIREMENT
 	{
-	    name = CompleteContract5707
+	    name = CompleteContract<NUM_7>
 	    type = CompleteContract
 
 	    // The type of contract being checked.  This can either be a
 	    // ContractConfigurator contract type or a standard contract type (class).
-	    contractType = FirstMunImpact
+	    contractType = FirstDunaImpact
 
 	    // The minimum number of times the given contract type must have been
 	    // completed before the requirement is met.
@@ -535,16 +796,18 @@ CONTRACT_TYPE
 	    cooldownDuration = 10d
 	}
 	
+<REMOTETECH>
+	
 	PARAMETER
 	{
-		name = VPG_5707
+		name = VPG_<NUM_7>
 		type = VesselParameterGroup
 		// nightingale - I'd let the title default itself in most cases
 		//  title = Vessel: Any; Duration: 1 year
 
 		PARAMETER
 		{
-			name = HasCrew5707
+			name = HasCrew<NUM_7>
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
@@ -553,7 +816,7 @@ CONTRACT_TYPE
 
 		PARAMETER
 		{
-			name = ReachState5707
+			name = ReachState<NUM_7>
 			type = ReachState
 			situation = LANDED
 			completeInSequence = true
@@ -562,7 +825,7 @@ CONTRACT_TYPE
 	}
 	BEHAVIOUR
 	{
-		name = WaypointGenerator5708
+		name = WaypointGenerator<NUM_8>
 		type = WaypointGenerator
 		
 		// Use this to generate a waypoint with random coordinates
