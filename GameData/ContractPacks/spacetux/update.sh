@@ -31,7 +31,7 @@ files=""
 for i in $*; do
 	files="$files GameData/ContractPacks/${basedir}/$i"
 done
-files="Gamedata/ContractPacks/SpacetuxSA"
+files="Gamedata/ContractPacks/Spacetux/SharedAssets Gamedata/ContractPacks/Spacetux/UnmannedContracts"
 cd $installdir
 
 echo "zip -9r ${releasedir}/${mod}-${major}.${minor}.${patch}.zip  $files"

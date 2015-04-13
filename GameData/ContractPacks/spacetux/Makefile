@@ -1,2 +1,67 @@
+# Makefile
+
+# Name of text file containing version number.
+VERSION_NUMBER_FILE=version-number.txt
+
+# Name of text file containing build number.
+BUILD_NUMBER_FILE=build-number.txt
+
+# Name of text file containing patch number.
+PATCH_NUMBER_FILE=patch-number.txt
+
+INSTALLDIR=~/install
+MODDIR=GameData/ContractPacks/Spacetux/UnmannedContracts
+
+AGENCY=spacetux
+
+OBJECTS=CHANGELOG-UnmannedContracts License-UnmannedContracts.txt UnmannedContracts.version mun_impact.cfg coherentcontractsmod.cfg  Minmus_unmanned.cfg Moho_unmanned.cfg Eve_unmanned.cfg Gilly_unmanned.cfg Duna_unmanned.cfg Ike_unmanned.cfg Dres_unmanned.cfg Jool_unmanned.cfg Laythe_unmanned.cfg Tylo_unmanned.cfg Vall_unmanned.cfg Bop_unmanned.cfg Eeloo_unmanned.cfg Pol_unmanned.cfg
+
+help:
+	@echo "UnmannedContracts build commands:"
+	@echo "make install         Copy to install directory"
+	@echo "make release         Build a new tarfile, and update patch number"
+	@echo "make version         Increment the version and set build to 0"
+	@echo "make nopatchrelease  Create the zip file, but not update patch number"
+	@echo "make mono            Test the netkan file against uploaded file"
+	@echo "make clean           Delete all unnecessary files"
+
 build:
 	./build.sh
+
+install:	$(OBJECTS)
+	@cd ~/github/SpaceTux/GameData/spacetux && make install
+
+	@rm -fr $(INSTALLDIR)/$(MODDIR)/*
+	@mkdir -p $(INSTALLDIR)/$(MODDIR)
+	@cp $(OBJECTS) $(INSTALLDIR)/$(MODDIR)
+
+nopatchrelease:	$(BUILD_NUMBER_FILE)
+	./update.sh UnmannedContracts nopatch $(OBJECTS)
+
+release:	
+	./update.sh UnmannedContracts $(OBJECTS)
+
+version:	$(VERSION_NUMBER_FILE) release
+	
+# Version number file.  Increment if requested
+$(VERSION_NUMBER_FILE):	nullfile
+	@if ! test -f $(VERSION_NUMBER_FILE); then echo 0 > $(VERSION_NUMBER_FILE); fi
+	@echo $$(($$(cat $(VERSION_NUMBER_FILE)) + 1)) > $(VERSION_NUMBER_FILE)
+	@echo -1 > $(BUILD_NUMBER_FILE)
+
+nullfile:
+
+# Build number file.  Increment if any object file changes.
+$(BUILD_NUMBER_FILE): $(OBJECTS)
+	@if ! test -f $(BUILD_NUMBER_FILE); then echo 0 > $(BUILD_NUMBER_FILE); fi
+	@echo $$(($$(cat $(BUILD_NUMBER_FILE)) + 1)) > $(BUILD_NUMBER_FILE)
+
+UnmannedContracts.version:
+	./update.sh UnmannedContracts version
+
+mono:
+	./update.sh UnmannedContracts mono
+
+clean:
+	./build.sh clean
+

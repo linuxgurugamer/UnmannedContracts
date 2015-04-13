@@ -10,7 +10,7 @@ BUILD_NUMBER_FILE=build-number.txt
 PATCH_NUMBER_FILE=patch-number.txt
 
 INSTALLDIR=~/install
-MODDIR=GameData/ContractPacks/SpacetuxSA/UnmannedContracts
+MODDIR=GameData/ContractPacks/Spacetux/UnmannedContracts
 
 AGENCY=spacetux
 

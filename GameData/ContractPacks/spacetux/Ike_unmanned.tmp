@@ -345,7 +345,7 @@ CONTRACT_TYPE
 {
 	name = FirstIkeOrbitalSat
 	group = SpaceTuxGroup
-	title = Orbit the first artificial satellite around the Ike.
+	title = Orbit the first artificial satellite around Ike.
 	// description = We want you to place a satellite in orbit around Ike. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
 	topic = satellites
@@ -353,8 +353,8 @@ CONTRACT_TYPE
 	motivation = test
 
 	notes = Complete the following:
-	synopsis = Put a satellite in orbit around the Ike.
-	completedMessage = You did it! We've placed a satellite in orbit around the Ike! This will be a day long remembered.
+	synopsis = Put a satellite in orbit around Ike.
+	completedMessage = You did it! We've placed a satellite in orbit around Ike! This will be a day long remembered.
 	agent = Space Penguins, Inc
 	cancellable = true
 	declinable = true
@@ -407,7 +407,7 @@ CONTRACT_TYPE
 {
 	name = PolarIkeOrbitalSat
 	group = SpaceTuxGroup
-	title = Orbit the first artificial satellite in a polar orbit around the Ike.
+	title = Orbit the first artificial satellite in a polar orbit around Ike.
 	// description = We want you to place a satellite in orbit around Ike. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
 	topic = satellites
@@ -415,8 +415,8 @@ CONTRACT_TYPE
 	motivation = test
 
 	notes = Complete the following:
-	synopsis = Put a satellite in orbit around the Ike.
-	completedMessage = You did it! We've placed a satellite in orbit around the Ike! This will be a day long remembered.
+	synopsis = Put a satellite in orbit around Ike.
+	completedMessage = You did it! We've placed a satellite in orbit around Ike! This will be a day long remembered.
 	agent = Space Penguins, Inc
 	cancellable = true
 	declinable = true
@@ -481,7 +481,7 @@ CONTRACT_TYPE
 {
 	name = EquatorialIkeOrbitalSat
 	group = SpaceTuxGroup
-	title = Orbit the first artificial satellite in an equatorial orbit around the Ike.
+	title = Orbit the first artificial satellite in an equatorial orbit around Ike.
 	// description = We want you to place a satellite in orbit around Ike. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
 	topic = satellites
@@ -489,8 +489,8 @@ CONTRACT_TYPE
 	motivation = test
 
 	notes = Complete the following:
-	synopsis = Put a satellite in orbit around the Ike.
-	completedMessage = You did it! We've placed a satellite in orbit around the Ike! This will be a day long remembered.
+	synopsis = Put a satellite in orbit around Ike.
+	completedMessage = You did it! We've placed a satellite in orbit around Ike! This will be a day long remembered.
 	agent = Space Penguins, Inc
 	cancellable = true
 	declinable = true
@@ -555,7 +555,7 @@ CONTRACT_TYPE
 {
 	name = KolniyaIkeOrbitalSat
 	group = SpaceTuxGroup
-	title = Orbit the first artificial satellite in a Kolniya orbit around the Ike.
+	title = Orbit the first artificial satellite in a Kolniya orbit around Ike.
 	// description = We want you to place a satellite in orbit around Ike. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
 	topic = satellites
@@ -563,8 +563,8 @@ CONTRACT_TYPE
 	motivation = test
 
 	notes = Complete the following:
-	synopsis = Put a satellite in orbit around the Ike.
-	completedMessage = You did it! We've placed a satellite in orbit around the Ike! This will be a day long remembered.
+	synopsis = Put a satellite in orbit around Ike.
+	completedMessage = You did it! We've placed a satellite in orbit around Ike! This will be a day long remembered.
 	agent = Space Penguins, Inc
 	cancellable = true
 	declinable = true
