@@ -1,14 +1,13 @@
 #!/bin/bash
 
 
-bodies="Minmus Moho Eve Gilly Duna Ike Dres Jool Laythe Tylo Vall Bop Eeloo Pol"
+gasbodies="Jool"
+bodies="Minmus Moho Eve Gilly Duna Ike Dres Laythe Tylo Vall Bop Eeloo Pol $gasbodies"
 
 template=cfg.template
 rtgiga=remotetech.giga.template
 rtantenna=remotetech.antenna.template
 rt=remotetech.template
-
-gasbodies="Jool"
 
 
 MohoRemoteTech="commDish"
@@ -40,11 +39,13 @@ for i in $bodies; do
 		rm -f Makefile
 	else
 		cp $template $fname
-		sed -i "" "s/<PLANETARYBODY>/${i}/g" $fname
+echo $template $fname
+
+		sed -i "s/<PLANETARYBODY>/${i}/g" $fname
 		cnt=$((cnt+1))
 		for n in `seq 1 6`; do
 			s="<NUM_${n}>"
-			sed -i "" "s/${s}/${cnt}${n}/g" $fname
+			sed -i "s/${s}/${cnt}${n}/g" $fname
 		done
 
 		oIFS=$IFS
@@ -63,14 +64,15 @@ for i in $bodies; do
 			fi
 		done <$fname
 		IFS=$oIFS
+		rm $fname
 	fi
 done
 
-
 if [ "$1" != "clean" ]; then
 	for i in $gasbodies; do
+		echo "Gas body: $i"
 		fname=${i}_unmanned.cfg
-		sed -i "" '/<LANDING_FOLLOWS>/q;p' $fname
+		sed -i '/<LANDING_FOLLOWS>/q' $fname
 	done
 
 	sed "s/<PLANETARYBODIES>/$files/g" <Makefile.template >Makefile

@@ -115,7 +115,7 @@ CONTRACT_TYPE
 	rewardReputation = 10.0
 	rewardFunds = Random(18000.0, 22000.0)
 	advanceFunds = Random(9000.0, 11000.0)
-	weight = 10.0
+	// weight = 10.0
 	
 	REQUIREMENT
 	{
@@ -211,7 +211,7 @@ CONTRACT_TYPE
 	rewardReputation = 15.0
 	rewardFunds = Random(28000.0, 32000.0)
 	advanceFunds = Random(9000.0, 11000.0)
-	weight = 10.0
+	// weight = 10.0
 	
 	REQUIREMENT
 	{
@@ -366,7 +366,7 @@ CONTRACT_TYPE
 	rewardReputation = 15.0
 	rewardFunds = Random(28000.0, 32000.0)
 	advanceFunds = Random(9000.0, 11000.0)
-	weight = 10.0
+	// weight = 10.0
 	REQUIREMENT
 	{
 		name = ReachSpace<NUM_4>
@@ -428,7 +428,7 @@ CONTRACT_TYPE
 	rewardReputation = 15.0
 	rewardFunds = Random(28000.0, 32000.0)
 	advanceFunds = Random(9000.0, 11000.0)
-	weight = 10.0
+	// weight = 10.0
 	REQUIREMENT
 	{
 		name = ReachSpace<NUM_4>
@@ -466,7 +466,7 @@ CONTRACT_TYPE
 		{
 			targetBody = <PLANETARYBODY>
 			type = POLAR
-			difficulty = 1
+			// difficulty = 1
 		}
 	}
 }
@@ -502,7 +502,7 @@ CONTRACT_TYPE
 	rewardReputation = 15.0
 	rewardFunds = Random(28000.0, 32000.0)
 	advanceFunds = Random(9000.0, 11000.0)
-	weight = 10.0
+	// weight = 10.0
 	REQUIREMENT
 	{
 		name = ReachSpace<NUM_4>
@@ -540,7 +540,7 @@ CONTRACT_TYPE
 		{
 			targetBody = <PLANETARYBODY>
 			type = EQUATORIAL 
-			difficulty = 1
+			// difficulty = 1
 		}
 	}
 }
@@ -576,7 +576,7 @@ CONTRACT_TYPE
 	rewardReputation = 15.0
 	rewardFunds = Random(28000.0, 32000.0)
 	advanceFunds = Random(9000.0, 11000.0)
-	weight = 10.0
+	// weight = 10.0
 	REQUIREMENT
 	{
 		name = ReachSpace<NUM_4>
@@ -614,7 +614,7 @@ CONTRACT_TYPE
 		{
 			targetBody = <PLANETARYBODY>
 			type = KOLNIYA
-			difficulty = 1
+			// difficulty = 1
 		}
 	}
 }
@@ -657,7 +657,7 @@ CONTRACT_TYPE
 	rewardReputation = 20.0
 	rewardFunds = Random(38000.0, 42000.0)
 	advanceFunds = Random(19000.0, 21000.0)
-	weight = 10.0
+	// weight = 10.0
 	
 	REQUIREMENT
 	{
@@ -762,7 +762,7 @@ CONTRACT_TYPE
 	rewardReputation = 25.0
 	rewardFunds = Random(43000.0, 47000.0)
 	advanceFunds = Random(19000.0, 21000.0)
-	weight = 10.0
+	// weight = 10.0
 	
 	REQUIREMENT
 	{
