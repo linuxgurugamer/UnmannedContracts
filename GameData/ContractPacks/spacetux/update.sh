@@ -2,8 +2,8 @@
 
 echo -e "\n\n"
 
-releasedir=~/release
-installdir=~/install
+releasedir=/cygdrive/d/users/jbb/release
+installdir=/cygdrive/d/users/jbb/install
 mkdir -p $releasedir
 
 major=0

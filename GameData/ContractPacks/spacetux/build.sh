@@ -9,7 +9,7 @@ rtgiga=remotetech.giga.template
 rtantenna=remotetech.antenna.template
 rt=remotetech.template
 
-
+MinmusRemoteTech="mediumDishAntenna"
 MohoRemoteTech="commDish"
 DresRemoteTech="RTLongDish2"
 DunaRemoteTech="commDish"
@@ -53,6 +53,8 @@ echo $template $fname
 		while IFS=$'\n' read -r var ; do
 			if [[ "$var" =~ "<REMOTETECH>" ]]; then
 				v="${i}RemoteTech"
+echo "v: $v"
+echo "v = ${!v}"
 				if [ "${!v}" == "AnyGigaDish" ]; then
 					cat $rtgiga >>$fnameFinal
 				else
