@@ -53,8 +53,8 @@ echo $template $fname
 		while IFS=$'\n' read -r var ; do
 			if [[ "$var" =~ "<REMOTETECH>" ]]; then
 				v="${i}RemoteTech"
-echo "v: $v"
-echo "v = ${!v}"
+#echo "v: $v"
+#echo "v = ${!v}"
 				if [ "${!v}" == "AnyGigaDish" ]; then
 					cat $rtgiga >>$fnameFinal
 				else

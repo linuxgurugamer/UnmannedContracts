@@ -148,7 +148,7 @@ CONTRACT_TYPE
 		}	
 		PARAMETER
 		{
-			name = ReachState<NUM_2>1
+			name = ReachState<NUM_2>
 			type = ReachState
 
 			// Minimum and maximum altitudes.
@@ -284,6 +284,16 @@ CONTRACT_TYPE
 			// Default Vessel State: <state details>
 			//title =
 		}
+
+		PARAMETER
+		{
+			name = VisitWaypoint<NUM_3>
+			type = VisitWaypoint
+			index = 0
+			distance = 10000
+			hideOnCompletion = true
+		}
+
 		PARAMETER
 		{
 			name = VesselDestroyed<NUM_3>
@@ -812,7 +822,15 @@ CONTRACT_TYPE
 			maxCrew = 0
 			minCrew = 0
 		}	
-		
+
+		PARAMETER
+		{
+			name = VisitWaypoint<NUM_8>
+			type = VisitWaypoint
+			index = 0
+			distance = 5000
+			hideOnCompletion = true
+		}
 
 		PARAMETER
 		{
