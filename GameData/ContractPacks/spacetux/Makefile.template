@@ -9,7 +9,9 @@ BUILD_NUMBER_FILE=build-number.txt
 # Name of text file containing patch number.
 PATCH_NUMBER_FILE=patch-number.txt
 
-INSTALLDIR=~/install
+ROOT=<ROOT>
+
+INSTALLDIR=$(ROOT)/install
 MODDIR=GameData/ContractPacks/Spacetux/UnmannedContracts
 
 AGENCY=spacetux
@@ -22,7 +24,6 @@ help:
 	@echo "make release         Build a new tarfile, and update patch number"
 	@echo "make version         Increment the version and set build to 0"
 	@echo "make nopatchrelease  Create the zip file, but not update patch number"
-	@echo "make mono            Test the netkan file against uploaded file"
 	@echo "make clean           Delete all unnecessary files"
 
 build:
@@ -58,9 +59,6 @@ $(BUILD_NUMBER_FILE): $(OBJECTS)
 
 UnmannedContracts.version:
 	./update.sh UnmannedContracts version
-
-mono:
-	./update.sh UnmannedContracts mono
 
 clean:
 	./build.sh clean

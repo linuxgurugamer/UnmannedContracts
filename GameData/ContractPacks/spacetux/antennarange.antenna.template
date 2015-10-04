@@ -1,0 +1,8 @@
+	REQUIREMENT:NEEDS[AntennaRange]
+	{
+		name = PartUnlocked
+		type = PartUnlocked
+
+		part = <ANTENNA>
+	}
+

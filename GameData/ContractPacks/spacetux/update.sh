@@ -1,9 +1,24 @@
 #!/bin/bash
 
-echo -e "\n\n"
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	os=linux
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+	os=osx
+elif [[ "$OSTYPE" == "cygwin" ]]; then
+        # POSIX compatibility layer and Linux environment emulation for Windows
+		os=cygwin
+	else
+		exit
+fi
 
-releasedir=/cygdrive/d/users/jbb/release
-installdir=/cygdrive/d/users/jbb/install
+echo -e "\n\n"
+if [ "$os" != "cygwin" ]; then
+	root=$HOME
+else
+	root="/cygdrive/d/users/jbb"
+fi
+releasedir=${root}/release
+installdir=${root}/install
 mkdir -p $releasedir
 
 major=0
@@ -18,10 +33,6 @@ curdir=`echo $curdir | cut -c1-${i}`
 
 mod=$1
 shift
-if [ "$1" = "mono" ]; then
-	mono ~/bin/netkan.exe  -v unmannedcontracts.netkan
-	exit
-fi
 
 [ "$1" = "version" ] && exit
 

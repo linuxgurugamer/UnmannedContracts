@@ -1,0 +1,9 @@
+	REQUIREMENT:NEEDS[AntennaRange]
+	{
+		name = PartModuleTypeUnlocked
+		type = PartModuleTypeUnlocked
+
+		partModuleType = Antenna
+		partModuleType = Power
+	}
+
