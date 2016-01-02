@@ -26,4 +26,3 @@
 0.3.10	updated weighting
 0.3.11	Fixed missing part for Minmus contracts
 0.3.12	Added missing VisitWaypoint parameter for the landing and impact contracts
-0.3.16	Updated deadlines to be more realistic

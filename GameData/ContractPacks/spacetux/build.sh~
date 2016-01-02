@@ -19,8 +19,8 @@ else
 fi
 
 gasbodies="Jool"
-bodies="Minmus Moho Eve Gilly Duna Ike   Dres Jool Laythe  Tylo Vall Bop Pol   Eeloo"
-deadlines=(106  300  450  475  700  730  1300  2600  2600  2600 2600 2600 2600 3900)
+bodies="Minmus Moho Eve Gilly Duna Ike Dres Jool Laythe Tylo Vall Bop Pol Eeloo"
+deadlines=(106  300  450  475  700  730  1300  2600  2600  2600 2600 2600  3900)
 
 template=cfg.template
 rtgiga=remotetech.giga.template
