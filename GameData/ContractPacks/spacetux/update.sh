@@ -26,6 +26,11 @@ major=`cat version-number.txt`
 minor=`cat build-number.txt`
 patch=`cat patch-number.txt`
 
+echo "Version:   ${major}.${minor}.${patch}"
+cat UnmannedContracts.version
+echo -e "\n\nOK to proceed (Y/n): "
+read yn
+[ "$yn" = 'n' -o "$yn" = "N" ] && exit
 curdir=`pwd`
 i=`awk -v a="$curdir" -v b="GameData" 'BEGIN{print index(a,b)}'`
 i=$((i-1))
@@ -44,6 +49,8 @@ for i in $*; do
 done
 files="Gamedata/ContractPacks/Spacetux/SharedAssets Gamedata/ContractPacks/Spacetux/UnmannedContracts"
 cd $installdir
+
+rm -f  ${releasedir}/${mod}-${major}.${minor}.${patch}.zip
 
 echo "zip -9r ${releasedir}/${mod}-${major}.${minor}.${patch}.zip  $files"
 zip -9r ${releasedir}/${mod}-${major}.${minor}.${patch}.zip  $files
