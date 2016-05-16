@@ -40,7 +40,8 @@ nopatchrelease:	$(BUILD_NUMBER_FILE)
 	./update.sh UnmannedContracts nopatch $(OBJECTS)
 
 release:	
-	./update.sh UnmannedContracts $(OBJECTS)
+	./update.sh UnmannedContracts nopatch $(OBJECTS)
+	#./update.sh UnmannedContracts $(OBJECTS)
 
 version:	$(VERSION_NUMBER_FILE) release
 	
