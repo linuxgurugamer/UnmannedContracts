@@ -16,7 +16,7 @@ MODDIR=GameData/ContractPacks/Spacetux/UnmannedContracts
 
 AGENCY=spacetux
 
-OBJECTS=CHANGELOG-UnmannedContracts License-UnmannedContracts.txt UnmannedContracts.version mun_impact.cfg coherentcontractsmod.cfg UnmannedContracts.dll <PLANETARYBODIES>
+OBJECTS=CHANGELOG-UnmannedContracts License-UnmannedContracts.txt UnmannedContracts.version coherentcontractsmod.cfg UnmannedContracts.dll group.cfg <PLANETARYBODIES>
 
 help:
 	@echo "UnmannedContracts build commands:"
@@ -30,7 +30,7 @@ build:
 	./build.sh
 
 install:	$(OBJECTS)
-	@cd ~/github/SpaceTux/GameData/spacetux && make install
+	@cd ~/github/SpaceTux/GameData/Spacetux && make install
 
 	@rm -fr $(INSTALLDIR)/$(MODDIR)/*
 	@mkdir -p $(INSTALLDIR)/$(MODDIR)

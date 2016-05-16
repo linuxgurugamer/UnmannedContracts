@@ -64,13 +64,14 @@ BopAntennaRange="commDish"
 PolAntennaRange="commDish"
 
 files=""
-cnt=570
-bodycnt=-1
-for i in $bodies; do
-	bodycnt=$((bodycnt+1))
+#cnt=570
+#bodycnt=-1
+#for i in $bodies; do
+for i in 1; do
+#	bodycnt=$((bodycnt+1))
 	fname=${i}_unmanned.tmp
 	fname2=${i}_unmanned2.tmp
-	fnameFinal=${i}_unmanned.cfg
+	fnameFinal=UnmannedContracts.cfg
 	rm -f $fname $fnameFinal
 
 	files="$files $fnameFinal"
@@ -80,72 +81,84 @@ for i in $bodies; do
 		continue
 	else
 		cp $template $fname
-echo $template $fname
+		echo $template $fname
+#		deadline=${deadlines[$bodycnt]}
+
+deadline=10000
 		if [ "$os" = "osx" ]; then
 			sed  -i "" "s/<PLANETARYBODY>/${i}/g" $fname
+			sed  -i "" "s/<DEADLINE>/$deadline/g" $fname
 		else
 			sed  -i "s/<PLANETARYBODY>/${i}/g" $fname
+			sed  -i "s/<DEADLINE>/$deadline/g" $fname
+
 		fi
-		deadline=${deadlines[$bodycnt]}
-		sed -i "s/<DEADLINE>/$deadline/g" $fname
+cp $fname $fnameFinal
+		if [ "$os" = "osx" ]; then
+			sed -i "" "s/<REMOTETECH>//g" $fnameFinal
+			sed -i "" "s/<ANTENNARANGE>//g" $fnameFinal
+		else
+			sed -i "s/<REMOTETECH>//g" $fnameFinal
+			sed -i "s/<ANTENNARANGE>//g" $fnameFinal
+		fi
+		
+#		cnt=$((cnt+1))
+#		for n in `seq 1 6`; do
+#			s="<NUM_${n}>"
+#			if [ "$os" = "osx" ]; then
+#				sed -i "" "s/${s}/${cnt}${n}/g" $fname
+#			else
+#				sed -i "s/${s}/${cnt}${n}/g" $fname
+#			fi
+#		done
 
-		cnt=$((cnt+1))
-		for n in `seq 1 6`; do
-			s="<NUM_${n}>"
-			if [ "$os" = "osx" ]; then
-				sed -i "" "s/${s}/${cnt}${n}/g" $fname
-			else
-				sed -i "s/${s}/${cnt}${n}/g" $fname
-			fi
-		done
-
-		oIFS=$IFS
-		IFS=
-		while IFS=$'\n' read -r var ; do
-			if [[ "$var" =~ "<REMOTETECH>" ]]; then
-				v="${i}RemoteTech"
-#echo "v: $v"
-#echo "v = ${!v}"
-				if [ "${!v}" == "AnyGigaDish" ]; then
-					cat $rtgiga >>$fname2
-				else
-					sed "s/<ANTENNA>/${!v}/g" <$rtantenna >>$fname2
-				fi
-				cat $rt >>$fname2	
-			else
-				echo $var >>$fname2
-			fi
-		done <$fname
+#		oIFS=$IFS
+#		IFS=
+#		while IFS=$'\n' read -r var ; do
+#			if [[ "$var" =~ "<REMOTETECH>" ]]; then
+#				v="${i}RemoteTech"
+##echo "v: $v"
+##echo "v = ${!v}"
+#				if [ "${!v}" == "AnyGigaDish" ]; then
+#					cat $rtgiga >>$fname2
+#				else
+#					sed "s/<ANTENNARANGE>/${!v}/g" <$rtantenna >>$fname2
+#				fi
+#				cat $rt >>$fname2	
+#			else
+#				echo $var >>$fname2
+#			fi
+#		done <$fname
 		
 
-		while IFS=$'\n' read -r var ; do
-			if [[ "$var" =~ "<ANTENNARANGE>" ]]; then
-				v="${i}AntennaRange"
-#echo "v1: $v"
-#echo "v1= ${!v}"
-				sed "s/<ANTENNA>/${!v}/g" <$arantenna >>$fnameFinal
-				cat $ar >>$fnameFinal	
-			else
-				echo $var >>$fnameFinal
-			fi
-		done <$fname2
-		
-		
-		IFS=$oIFS
-		rm $fname $fname2
+#		while IFS=$'\n' read -r var ; do
+#			if [[ "$var" =~ "<ANTENNARANGE>" ]]; then
+#				v="${i}AntennaRange"
+##echo "v1: $v"
+##echo "v1= ${!v}"
+#				sed "s/<ANTENNA>/${!v}/g" <$arantenna >>$fnameFinal
+#				cat $ar >>$fnameFinal	
+#			else
+#				echo $var >>$fnameFinal
+#			fi
+#		done <$fname2
+#		
+#		
+#		IFS=$oIFS
+#		rm $fname $fname2
 	fi
 done
 
 if [ "$1" != "clean" ]; then
-	for i in $gasbodies; do
-		echo "Gas body: $i"
-		fname=${i}_unmanned.cfg
-		if [ "$os" = "osx" ]; then
-			sed -i "" '/<LANDING_FOLLOWS>/q' $fname
-		else
-			sed -i '/<LANDING_FOLLOWS>/q' $fname
-		fi
-	done
+#	for i in $gasbodies; do
+#		echo "Gas body: $i"
+#		fname=${i}_unmanned.cfg
+#		if [ "$os" = "osx" ]; then
+#			sed -i "" '/<LANDING_FOLLOWS>/q' $fname
+#		else
+#			sed -i '/<LANDING_FOLLOWS>/q' $fname
+#		fi
+#	done
 
 echo $root
 

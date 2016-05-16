@@ -8,32 +8,131 @@
 // License is CC BY-NC-SA 4.0
 // https://creativecommons.org/licenses/by-nc-sa/4.0/
 
+
+CONTRACT_TYPE
+{
+// For debugging
+//trace = true
+	name = First Orbit
+	group = STGUnmannedMissions
+	title = Let's get a probe into orbit
+
+	topic = orbit
+	subject = HomeWorld()
+	motivation = Because....
+
+	notes = Complete the following:
+	synopsis = Send a probe to space and get it into orbit around our homeworld
+	completedMessage = You did it! You've successfully gotten a probe into orbit
+	agent = Space Penguins, Inc
+	cancellable = true
+	declinable = true
+	prestige = Exceptional
+	targetBody = HomeWorld()
+	maxCompletions = 1
+	maxSimultaneous = 1
+	rewardScience = 25.0
+	rewardReputation = 5.0
+	rewardFunds = Random(18000.0, 22000.0)
+	advanceFunds = Random(9000.0, 11000.0)
+	
+	PARAMETER
+	{
+		name = Orbit
+		type = Orbit
+	
+		situation = ORBITING
+		minInclination = 0
+		minEccentricity = 0.0
+		
+	}
+}
+
+CONTRACT_TYPE
+{
+// For debugging
+//trace = true
+	name = First Return from Orbit
+	group = STGUnmannedMissions
+	title = Let's get a probe into orbit and return it safely home
+
+	topic = orbit
+	subject = HomeWorld()
+	motivation = Because....
+
+	notes = Complete the following:
+	synopsis = Send a probe to space and get it into orbit around our homeworld and then get it back
+	completedMessage = You did it! You've successfully gotten a probe into orbit and returned it home
+	agent = Space Penguins, Inc
+	cancellable = true
+	declinable = true
+	prestige = Exceptional
+	targetBody = HomeWorld()
+	maxCompletions = 1
+	maxSimultaneous = 1
+	rewardScience = 25.0
+	rewardReputation = 5.0
+	rewardFunds = Random(18000.0, 22000.0)
+	advanceFunds = Random(9000.0, 11000.0)
+	
+	PARAMETER
+	{
+		name = VesselParameterGroup_1
+		type = VesselParameterGroup
+		completeInSequence = true
+	
+		PARAMETER
+		{
+			name = Orbit
+			type = Orbit
+	
+			situation = ORBITING
+			minInclination = 0
+			minEccentricity = 0.0
+			
+			disableOnStateChange = true
+			
+			completeInSequence = true
+		
+		}
+		PARAMETER
+		{
+			name = ReturnHome
+			type = ReturnHome
+			completeInSequence = true
+		}
+	}
+}
+
 ///////////////////////////////////////
 //
-// Unmanned <PLANETARYBODY> Flyby
+// Unmanned Flyby
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = FirstUnmanned<PLANETARYBODY>Flyby
-	group = SpaceTuxGroup
-	title = Perform an  unmanned <PLANETARYBODY> flyby mission.
+// For debugging
+//trace = true
+	name = First Unmanned Flyby
+	group = STGUnmannedMissions
+	title = Perform an unmanned @STGUnmannedMissions:UnmannedMissionPlanet flyby mission.
 
-	// description = Send a probe to perform a flyby of the <PLANETARYBODY>! This will be a strong demonstration of our capabilities, and an important 'first' for our space program! 
+	// description = Send a probe to perform a flyby of the @STGUnmannedMissions:UnmannedMissionPlanet !  This will be a strong demonstration of our capabilities, and an important 'first' for our space program! 
 	topic = flyby
-	subject = <PLANETARYBODY>
+	subject = @STGUnmannedMissions:UnmannedMissionPlanet
 	motivation = future landing
 
 	notes = Complete the following:
-	synopsis = Send a probe to space within the SOI of <PLANETARYBODY>
-	completedMessage = You did it! We've send a probe on a <PLANETARYBODY> flyby
+	synopsis = Send a probe to space within the SOI of @STGUnmannedMissions:UnmannedMissionPlanet
+	completedMessage = You did it! We've send a probe on a @STGUnmannedMissions:UnmannedMissionPlanet flyby
 	agent = Space Penguins, Inc
-	cancellable = false
-	declinable = false
+	cancellable = true
+	declinable = true
 	prestige = Significant
-	targetBody = <PLANETARYBODY>
-	maxCompletions = 1
+	targetBody = @STGUnmannedMissions:UnmannedMissionPlanet
+	deadline = @STGUnmannedMissions:travelTime * 10
+//	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
 	rewardReputation = 5.0
@@ -41,39 +140,133 @@ CONTRACT_TYPE
 	advanceFunds = Random(9000.0, 11000.0)
 	// weight = 99.0
 
+//	BEHAVIOUR
+//	{
+//		name = DialogBox
+//		type = DialogBox
+//
+//		DIALOG_BOX
+//		{
+//			title = test dialog box
+//			condition = CONTRACT_ACCEPTED
+//			TEXT
+//			{
+//				text = text to display 
+//			}
+//		}
+//	}
+
+
+
 	REQUIREMENT
 	{
-		name = ReachSpace<NUM_1>
+		name = ReachSpace_1
 		type = ReachSpace
 	}
+	
+	// Make sure they did not do a flyby first
+	REQUIREMENT
+	{
+		name = FlyBy
+		type = FlyBy
+		
+		invertRequirement = true
+	}
+
+	DATA
+	{
+		type = String
+
+		uniquenessCheck = GROUP_ALL
+		requiredValue = true
+
+		uid = FirstUnmannedFlyby:@STGUnmannedMissions:UnmannedMissionPlanet.Name()
+	}
+
+//	DATA
+//	{
+//		type = List<CelestialBody>
+//		requiredValue = false
+//		localPlanetFlybys = $planetFlybys
+//	}
+	
+//	BEHAVIOUR
+//	{
+//		name = Expression_1a
+//		type = Expression
+//
+//		CONTRACT_COMPLETED_SUCCESS
+//		{
+//			type = List<CelestialBody>
+//
+//			@/localPlanetFlybys = @/localPlanetFlybys.Add(@/targetBody)
+//			$planetFlybys = @/localPlanetFlybys
+//		}
+//	}
+//
+//
+//	REQUIREMENT
+//	{
+//		name = Expression_1b
+//		type = Expression
+//
+//		expression = @/localPlanetFlybys.Contains(@/targetBody) == false
+//
+//	}
+
+	REQUIREMENT
+	{
+		name = Orbit
+		type = Orbit
+
+		// Target body, defaulted from the contract if not supplied.
+		//
+		// Type:	  CelestialBody
+		// Required:  No (defaulted)
+		//
+		targetBody = HomeWorld()
+	}
+
+
 
 <REMOTETECH>
 <ANTENNARANGE>
 
 	PARAMETER
 	{
-		name = Sequence<NUM_1>
+		name = Sequence_1
 		type = Sequence
-		title = <PLANETARYBODY> Flyby
+//		title = Flyby @STGUnmannedMissions:UnmannedMissionPlanet
+		title = Flyby @/targetBody
 
 		PARAMETER
 		{
-			name = VesselParameterGroup<NUM_1>
+			name = VesselParameterGroup_1
 			type = VesselParameterGroup
-			define = <PLANETARYBODY> Flyby
+			//define = @STGUnmannedMissions:UnmannedMissionPlanet Flyby
+			completeInSequence = true
+
 			PARAMETER
 			{
-				name = HasCrew<NUM_1>
+				name = HasCrew_1
 				type = HasCrew
 				maxCrew = 0
 				minCrew = 0
 			}
 			PARAMETER
 			{
-                                name = ReachState<NUM_1>
-                                type = ReachState
-                                // maxAltitude = 50000
-                                targetBody = <PLANETARYBODY>
+				name = ReachState_1
+				type = ReachState
+				// This should be 500 km
+				maxAltitude = 500000
+				targetBody = @/targetBody
+			}
+			PARAMETER
+			{
+				name = ReachState_Escaping_1
+				type = ReachState
+				situation = ESCAPING
+				targetBody = @/targetBody
 			}
 		}
 	}
@@ -81,23 +274,23 @@ CONTRACT_TYPE
 
 ///////////////////////////////////////
 //
-// Unmanned <PLANETARYBODY> Impact
+// Unmanned Impact
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = First<PLANETARYBODY>Impact
-	group = SpaceTuxGroup
-	title = Crash a probe on <PLANETARYBODY>!
-	// description = We want to get larger, clearer closeup pictures.  To do this, we need to send a probe to crash on <PLANETARYBODY>.  This will be a monumental achievement.
+	name = First Impact
+	group = STGUnmannedMissions
+	title = Crash a probe on @STGUnmannedMissions:UnmannedMissionPlanet !
+	// description = We want to get larger, clearer closeup pictures.  To do this, we need to send a probe to crash on @STGUnmannedMissions:UnmannedMissionPlanet .  This will be a monumental achievement.
 
 	topic = crash
-	subject = <PLANETARYBODY>
+	subject = @STGUnmannedMissions:UnmannedMissionPlanet
 	motivation = moar pictures
 
 	notes = Complete the following:
-	synopsis = Launch an unmanned probe and have it crash onto the <PLANETARYBODY>
+	synopsis = Launch an unmanned probe and have it crash onto the @STGUnmannedMissions:UnmannedMissionPlanet
 	completedMessage = Future generations will remember this day.
 	agent = Space Penguins, Inc
 	// agent = Research & Development Department
@@ -105,12 +298,12 @@ CONTRACT_TYPE
 	minExpiry = 50.0
 	maxExpiry = 100.0
 	// Contract deadline in days.  Default is no deadline.
-	deadline = <DEADLINE>
+	deadline = @STGUnmannedMissions:travelTime * 10
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = <PLANETARYBODY>
-	maxCompletions = 1
+	targetBody = @STGUnmannedMissions:UnmannedMissionPlanet
+//	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
 	rewardReputation = 10.0
@@ -120,37 +313,71 @@ CONTRACT_TYPE
 	
 	REQUIREMENT
 	{
-		name = ReachSpace<NUM_2>
+		name = ReachSpace_2
 		type = ReachSpace
 	}
 
+	// Make sure they did a flyby first
+	REQUIREMENT
+	{
+		name = FlyBy
+		type = FlyBy
+	}
+	
 	// If we've landed, then no need to crash a probe into it
 	REQUIREMENT
 	{
-		name = Nolanding<NUM_2>
+		name = Nolanding_2
 		type = Landing
-		targetBody = <PLANETARYBODY>
+
 		invertRequirement = true
 	}
 
+	DATA
+	{
+		type = String
+
+		uniquenessCheck = GROUP_ALL
+		requiredValue = true
+
+		uid = FirstImpact:@STGUnmannedMissions:UnmannedMissionPlanet.Name()
+	}
+
+
+//	// No impact contracts until a flyby is completed
+//	DATA
+//	{
+//		type = List<CelestialBody>
+//		requiredValue = false
+//		localPlanetFlybys = $planetFlybys
+//	}
+//	REQUIREMENT
+//	{
+//		name = Expression_3b
+//		type = Expression
+//
+//		expression = @/localPlanetFlybys.Contains(@STGUnmannedMissions:UnmannedMissionPlanet) == true
+//
+//	}
+	
 <REMOTETECH>
 <ANTENNARANGE>
 
 	PARAMETER
 	{
-		name = VPG<NUM_2>
+		name = VPG_2
 		type = VesselParameterGroup
 
 		PARAMETER
 		{
-			name = HasCrew<NUM_2>
+			name = HasCrew_2
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
 		}	
 		PARAMETER
 		{
-			name = ReachState<NUM_2>
+			name = ReachState_2
 			type = ReachState
 
 			// Minimum and maximum altitudes.
@@ -158,7 +385,7 @@ CONTRACT_TYPE
 			maxAltitude = 75000
 
 			// Minimum and maximum speeds
-			minSpeed = 500
+			minSpeed = 250
 			maxSpeed = 5000
 
 			// Text to use for the parameter
@@ -167,7 +394,7 @@ CONTRACT_TYPE
 		}
 		PARAMETER
 		{
-			name = VesselDestroyed<NUM_1>
+			name = VesselDestroyed_1
 			type = VesselDestroyed
 			mustImpactTerrain = true
 			completeInSequence = true
@@ -178,23 +405,23 @@ CONTRACT_TYPE
 
 ///////////////////////////////////////
 //
-// Unmanned <PLANETARYBODY> Targeted Impact
+// Unmanned Targeted Impact
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = Targeted<PLANETARYBODY>Impact
-	group = SpaceTuxGroup
-	title = Crash a probe on <PLANETARYBODY> on a target!
-	// description = We want to get larger, clearer closeup pictures of a potential landing site.  To do this, we need to send a probe to crash on <PLANETARYBODY> and impact at the specified location.  This will be a monumental achievement.
+	name = Targeted Impact
+	group = STGUnmannedMissions
+	title = Crash a probe on @STGUnmannedMissions:UnmannedMissionPlanet on a target!
+	// description = We want to get larger, clearer closeup pictures of a potential landing site.  To do this, we need to send a probe to crash on @STGUnmannedMissions:UnmannedMissionPlanet and impact at the specified location.  This will be a monumental achievement.
 
 	topic = crash
-	subject = <PLANETARYBODY>
+	subject = @STGUnmannedMissions:UnmannedMissionPlanet
 	motivation = moar pictures
 
 	notes = Complete the following:
-	synopsis = Launch an unmanned probe and have it crash onto the <PLANETARYBODY> at a specific location
+	synopsis = Launch an unmanned probe and have it crash onto the @STGUnmannedMissions:UnmannedMissionPlanet at a specific location
 	completedMessage = Future generations will remember this day.
 	agent = Space Penguins, Inc
 	// agent = Research & Development Department
@@ -202,12 +429,12 @@ CONTRACT_TYPE
 	minExpiry = 50.0
 	maxExpiry = 100.0
 	// Contract deadline in days.  Default is no deadline.
-	deadline = 100
+	deadline = @STGUnmannedMissions:travelTime * 10
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = <PLANETARYBODY>
-	maxCompletions = 1
+	targetBody = @STGUnmannedMissions:UnmannedMissionPlanet
+//	maxCompletions = 3
 	maxSimultaneous = 1
 	rewardScience = 25.0
 	rewardReputation = 15.0
@@ -215,64 +442,104 @@ CONTRACT_TYPE
 	advanceFunds = Random(9000.0, 11000.0)
 	// weight = 10.0
 	
-	REQUIREMENT
+	DATA
 	{
-		name = ReachSpace<NUM_3>
-		type = ReachSpace
+		type = List<CelestialBody>
+		requiredValue = false
+		impactedPlanets = $impactedPlanets
 	}
-	// If we've landed, then no need to crash a probe into it
-	REQUIREMENT
-	{
-		name = Nolanding<NUM_3>
-		type = Landing
-		targetBody = <PLANETARYBODY>
-		invertRequirement = true
-	}
+//	BEHAVIOUR
+//	{
+//		name = Expression
+//		type = Expression
+//		
+//		CONTRACT_COMPLETED_SUCCESS
+//		{
+//			type = List<CelestialBody>
+//			
+//			@/impactedPlanets = @/impactedPlanets.Add(@/targetBody)
+//			$impactedPlanets = @/impactedPlanets
+////			$impactedPlanets = $impactedPlanets.Add(@/targetBody)
+//		}
+//	}	
+
 	
 	REQUIREMENT
 	{
-	    name = CompleteContract<NUM_3>
-	    type = CompleteContract
-
-	    // The type of contract being checked.  This can either be a
-	    // ContractConfigurator contract type or a standard contract type (class).
-	    contractType = First<PLANETARYBODY>Impact
-
-	    // The minimum number of times the given contract type must have been
-	    // completed before the requirement is met.
-	    // Default = 1
-	    minCount = 1
-
-	    // The maximum number of times the given contract type can be completed
-	    // before the requirement will no longer be met.
-	    // Default = Infinite
-	    // maxCount = 5
-
-	    // The amount of time after the last instance of the contract was
-	    // complete before we can attempt again. Can specify
-	    // values in years (y), days (d), hours (h), minutes (m), seconds (s)
-	    // or any combination of those.
-	    cooldownDuration = 10d
+		name = ReachSpace_3
+		type = ReachSpace
 	}
+
+	// Make sure they did a flyby first
+	REQUIREMENT
+	{
+		name = FlyBy
+		type = FlyBy
+	}
+	
+	// If we've landed, then no need to crash a probe into it
+	REQUIREMENT
+	{
+		name = Nolanding_3
+		type = Landing
+		targetBody = @/targetBody
+		invertRequirement = true
+	}
+
+	DATA
+	{
+		type = String
+
+		uniquenessCheck = GROUP_ALL
+		requiredValue = true
+
+		uid = TargetedImpact:@STGUnmannedMissions:UnmannedMissionPlanet.Name()
+	}
+
+//	REQUIREMENT
+//	{
+//		name = Expression_3a
+//		type = Expression
+//
+//		expression = @/impactedPlanets.Contains(@/targetBody) == true
+//
+//	}
+	
+//	// No impact contracts until a flyby is completed
+//	DATA
+//	{
+//		type = List<CelestialBody>
+//		requiredValue = false
+//		localPlanetFlybys = $planetFlybys
+//	}
+//	REQUIREMENT
+//	{
+//		name = Expression_3b
+//		type = Expression
+//
+//		expression = @/localPlanetFlybys.Contains(@/targetBody) == true
+//
+//	}
+	
 	
 <REMOTETECH>
 <ANTENNARANGE>
 
 	PARAMETER
 	{
-		name = VPG<NUM_3>
+		name = VPG_3
 		type = VesselParameterGroup
 
 		PARAMETER
 		{
-			name = HasCrew<NUM_3>
+			name = HasCrew_3
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
 		}	
 		PARAMETER
 		{
-			name = ReachState<NUM_3>
+			name = ReachState_3
 			type = ReachState
 
 			// Minimum and maximum altitudes.
@@ -280,7 +547,7 @@ CONTRACT_TYPE
 			maxAltitude = 75000
 
 			// Minimum and maximum speeds
-			minSpeed = 500
+			minSpeed = 250
 			maxSpeed = 5000
 
 			// Text to use for the parameter
@@ -290,7 +557,7 @@ CONTRACT_TYPE
 
 		PARAMETER
 		{
-			name = VisitWaypoint<NUM_3>
+			name = VisitWaypoint_3
 			type = VisitWaypoint
 			index = 0
 			distance = 10000
@@ -299,7 +566,7 @@ CONTRACT_TYPE
 
 		PARAMETER
 		{
-			name = VesselDestroyed<NUM_3>
+			name = VesselDestroyed_3
 			type = VesselDestroyed
 			mustImpactTerrain = true
 			completeInSequence = true
@@ -308,7 +575,7 @@ CONTRACT_TYPE
 
 	BEHAVIOUR
 	{
-		name = WaypointGenerator<NUM_3>
+		name = WaypointGenerator_3
 		type = WaypointGenerator
 		
 		// Use this to generate a waypoint with random coordinates
@@ -356,24 +623,25 @@ CONTRACT_TYPE
 
 CONTRACT_TYPE
 {
-	name = First<PLANETARYBODY>OrbitalSat
-	group = SpaceTuxGroup
-	title = Orbit the first artificial satellite around <PLANETARYBODY>.
-	// description = We want you to place a satellite in orbit around <PLANETARYBODY>. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+	name = First Orbital Satellite
+	group = STGUnmannedMissions
+	title = Orbit the first artificial satellite around @STGUnmannedMissions:UnmannedMissionPlanet
+	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet . This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
 	topic = satellites
-	subject = <PLANETARYBODY>
+	subject = @STGUnmannedMissions:UnmannedMissionPlanet
 	motivation = test
 
 	notes = Complete the following:
-	synopsis = Put a satellite in orbit around <PLANETARYBODY>.
-	completedMessage = You did it! We've placed a satellite in orbit around <PLANETARYBODY>! This will be a day long remembered.
+	synopsis = Put a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
+	completedMessage = You did it! We've placed a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet !  This will be a day long remembered.
 	agent = Space Penguins, Inc
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = Kerbin
-	maxCompletions = 1
+	targetBody = @STGUnmannedMissions:UnmannedMissionPlanet
+	deadline = @STGUnmannedMissions:travelTime * 10
+//	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
 	rewardReputation = 15.0
@@ -382,30 +650,65 @@ CONTRACT_TYPE
 	// weight = 10.0
 	REQUIREMENT
 	{
-		name = ReachSpace<NUM_4>
+		name = ReachSpace_4
 		type = ReachSpace
 	}
+	
+//	// No orbital contracts until a flyby is completed
+//	DATA
+//	{
+//		type = List<CelestialBody>
+//		requiredValue = false
+//		localPlanetFlybys = $planetFlybys
+//	}
+//
+//	REQUIREMENT
+//	{
+//		name = Expression_3b
+//		type = Expression
+//
+//		expression = @/localPlanetFlybys.Contains(@/targetBody) == true
+//
+//	}
+
+	// Make sure they did a flyby first
+	REQUIREMENT
+	{
+		name = FlyBy
+		type = FlyBy
+	}
+	
+	DATA
+	{
+		type = String
+
+		uniquenessCheck = GROUP_ALL
+		requiredValue = true
+
+		uid = FirstOrbitalSatellite:@STGUnmannedMissions:UnmannedMissionPlanet.Name()
+	}
+
 	
 <REMOTETECH>
 <ANTENNARANGE>
 
 	PARAMETER
 	{
-		name = VPG<NUM_4>
+		name = VPG_4
 		type = VesselParameterGroup
 		define = Satellite
 		PARAMETER
 		{
-			name = HasCrew<NUM_4>
+			name = HasCrew_4
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
 		}
 		PARAMETER
 		{
-			name = Orbit<NUM_4>
+			name = Orbit_4
 			type = Orbit
-			targetBody = <PLANETARYBODY>
+			targetBody = @/targetBody
 			minAltitude = 8000			
 		}
 	}
@@ -419,24 +722,25 @@ CONTRACT_TYPE
 
 CONTRACT_TYPE
 {
-	name = Polar<PLANETARYBODY>OrbitalSat
-	group = SpaceTuxGroup
-	title = Orbit the first artificial satellite in a polar orbit around <PLANETARYBODY>.
-	// description = We want you to place a satellite in orbit around <PLANETARYBODY>. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+	name = Polar Orbital Satellite
+	group = STGUnmannedMissions
+	title = Orbit the first artificial satellite in a polar orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
+	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet .  This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
 	topic = satellites
-	subject = <PLANETARYBODY>
+	subject = @STGUnmannedMissions:UnmannedMissionPlanet
 	motivation = test
 
 	notes = Complete the following:
-	synopsis = Put a satellite in orbit around <PLANETARYBODY>.
-	completedMessage = You did it! We've placed a satellite in orbit around <PLANETARYBODY>! This will be a day long remembered.
+	synopsis = Put a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
+	completedMessage = You did it! We've placed a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet !  This will be a day long remembered.
 	agent = Space Penguins, Inc
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = Kerbin
-	maxCompletions = 1
+	targetBody = @STGUnmannedMissions:UnmannedMissionPlanet
+	deadline = @STGUnmannedMissions:travelTime * 10
+//	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
 	rewardReputation = 15.0
@@ -445,28 +749,61 @@ CONTRACT_TYPE
 	// weight = 10.0
 	REQUIREMENT
 	{
-		name = ReachSpace<NUM_4>
+		name = ReachSpace_4
 		type = ReachSpace
 	}
 	
+//	// No orbital contracts until a flyby is completed
+//	DATA
+//	{
+//		type = List<CelestialBody>
+//		requiredValue = false
+//		localPlanetFlybys = $planetFlybys
+//	}
+//	REQUIREMENT
+//	{
+//		name = Expression_3b
+//		type = Expression
+//
+//		expression = @/localPlanetFlybys.Contains(@/targetBody) == true
+//
+//	}
+
+	// Make sure they did a flyby first
+	REQUIREMENT
+	{
+		name = FlyBy
+		type = FlyBy
+	}
+	
+	DATA
+	{
+		type = String
+
+		uniquenessCheck = GROUP_ALL
+		requiredValue = true
+
+		uid = PolarOrbitalSatellite:@STGUnmannedMissions:UnmannedMissionPlanet.Name()
+	}
+
 <REMOTETECH>
 <ANTENNARANGE>
 
 	PARAMETER
 	{
-		name = VPG<NUM_4>
+		name = VPG_4
 		type = VesselParameterGroup
 		define = Satellite
 		PARAMETER
 		{
-			name = HasCrew<NUM_4>
+			name = HasCrew_4
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
 		}
 		PARAMETER
 		{
-			name = PolarOrbit<NUM_4>
+			name = PolarOrbit_4
 			type = ReachSpecificOrbit
 			index = 0
 			deviationWindow = 3
@@ -479,7 +816,7 @@ CONTRACT_TYPE
 
 		RANDOM_ORBIT
 		{
-			targetBody = <PLANETARYBODY>
+			targetBody = @/targetBody
 			type = POLAR
 			// difficulty = 1
 		}
@@ -494,24 +831,25 @@ CONTRACT_TYPE
 
 CONTRACT_TYPE
 {
-	name = Equatorial<PLANETARYBODY>OrbitalSat
-	group = SpaceTuxGroup
-	title = Orbit the first artificial satellite in an equatorial orbit around <PLANETARYBODY>.
-	// description = We want you to place a satellite in orbit around <PLANETARYBODY>. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+	name = Equatorial OrbitalSat
+	group = STGUnmannedMissions
+	title = Orbit the first artificial satellite in an equatorial orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
+	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet .  This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
 	topic = satellites
-	subject = <PLANETARYBODY>
+	subject = @STGUnmannedMissions:UnmannedMissionPlanet
 	motivation = test
 
 	notes = Complete the following:
-	synopsis = Put a satellite in orbit around <PLANETARYBODY>.
-	completedMessage = You did it! We've placed a satellite in orbit around <PLANETARYBODY>! This will be a day long remembered.
+	synopsis = Put a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
+	completedMessage = You did it! We've placed a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet !  This will be a day long remembered.
 	agent = Space Penguins, Inc
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = Kerbin
-	maxCompletions = 1
+	targetBody = @STGUnmannedMissions:UnmannedMissionPlanet
+	deadline = @STGUnmannedMissions:travelTime * 10
+//	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
 	rewardReputation = 15.0
@@ -520,28 +858,62 @@ CONTRACT_TYPE
 	// weight = 10.0
 	REQUIREMENT
 	{
-		name = ReachSpace<NUM_4>
+		name = ReachSpace_4
 		type = ReachSpace
 	}
+	
+//	// No orbital contracts until a flyby is completed
+//	DATA
+//	{
+//		type = List<CelestialBody>
+//		requiredValue = false
+//		localPlanetFlybys = $planetFlybys
+//	}
+//	REQUIREMENT
+//	{
+//		name = Expression_3b
+//		type = Expression
+//
+//		expression = @/localPlanetFlybys.Contains(@/targetBody) == true
+//
+//	}
+
+	// Make sure they did a flyby first
+	REQUIREMENT
+	{
+		name = FlyBy
+		type = FlyBy
+	}
+	
+	DATA
+	{
+		type = String
+
+		uniquenessCheck = GROUP_ALL
+		requiredValue = true
+
+		uid = EquatorialOrbitalSatellite:@STGUnmannedMissions:UnmannedMissionPlanet.Name()
+	}
+
 	
 <REMOTETECH>
 <ANTENNARANGE>
 
 	PARAMETER
 	{
-		name = VPG<NUM_4>
+		name = VPG_4
 		type = VesselParameterGroup
 		define = Satellite
 		PARAMETER
 		{
-			name = HasCrew<NUM_4>
+			name = HasCrew_4
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
 		}
 		PARAMETER
 		{
-			name = EquatorialOrbit<NUM_4>
+			name = EquatorialOrbit_4
 			type = ReachSpecificOrbit
 			index = 0
 			deviationWindow = 3
@@ -554,7 +926,7 @@ CONTRACT_TYPE
 
 		RANDOM_ORBIT
 		{
-			targetBody = <PLANETARYBODY>
+			targetBody = @/targetBody
 			type = EQUATORIAL 
 			// difficulty = 1
 		}
@@ -569,24 +941,25 @@ CONTRACT_TYPE
 
 CONTRACT_TYPE
 {
-	name = Kolniya<PLANETARYBODY>OrbitalSat
-	group = SpaceTuxGroup
-	title = Orbit the first artificial satellite in a Kolniya orbit around <PLANETARYBODY>.
-	// description = We want you to place a satellite in orbit around <PLANETARYBODY>. This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+	name = Kolniya Orbital Satellite
+	group = STGUnmannedMissions
+	title = Orbit the first artificial satellite in a Kolniya orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
+	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet . This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
 	topic = satellites
-	subject = <PLANETARYBODY>
+	subject = @STGUnmannedMissions:UnmannedMissionPlanet
 	motivation = test
 
 	notes = Complete the following:
-	synopsis = Put a satellite in orbit around <PLANETARYBODY>.
-	completedMessage = You did it! We've placed a satellite in orbit around <PLANETARYBODY>! This will be a day long remembered.
+	synopsis = Put a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
+	completedMessage = You did it! We've placed a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet !  This will be a day long remembered.
 	agent = Space Penguins, Inc
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = Kerbin
-	maxCompletions = 1
+	targetBody = @STGUnmannedMissions:UnmannedMissionPlanet
+	deadline = @STGUnmannedMissions:travelTime * 10
+//	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
 	rewardReputation = 15.0
@@ -595,28 +968,63 @@ CONTRACT_TYPE
 	// weight = 10.0
 	REQUIREMENT
 	{
-		name = ReachSpace<NUM_4>
+		name = ReachSpace_4
 		type = ReachSpace
 	}
+
+//	// No orbital contracts until a flyby is completed
+//	DATA
+//	{
+//		type = List<CelestialBody>
+//		requiredValue = false
+//		localPlanetFlybys = $planetFlybys
+//	}
+//	REQUIREMENT
+//	{
+//		name = Expression_3b
+//		type = Expression
+//
+//		expression = @/localPlanetFlybys.Contains(@/targetBody) == true
+//
+//	}
+
+	// Make sure they did a flyby first
+	REQUIREMENT
+	{
+		name = FlyBy
+		type = FlyBy
+	}
+	
+	DATA
+	{
+		type = String
+
+		uniquenessCheck = GROUP_ALL
+		requiredValue = true
+
+		uid = KolniyaOrbitalSatellite:@STGUnmannedMissions:UnmannedMissionPlanet.Name()
+	}
+
+	
 	
 <REMOTETECH>
 <ANTENNARANGE>
 
 	PARAMETER
 	{
-		name = VPG<NUM_4>
+		name = VPG_4
 		type = VesselParameterGroup
 		define = Satellite
 		PARAMETER
 		{
-			name = HasCrew<NUM_4>
+			name = HasCrew_4
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
 		}
 		PARAMETER
 		{
-			name = KolniyaOrbit<NUM_4>
+			name = KolniyaOrbit_4
 			type = ReachSpecificOrbit
 			index = 0
 			deviationWindow = 3
@@ -629,7 +1037,7 @@ CONTRACT_TYPE
 
 		RANDOM_ORBIT
 		{
-			targetBody = <PLANETARYBODY>
+			targetBody = @/targetBody
 			type = KOLNIYA
 			// difficulty = 1
 		}
@@ -639,23 +1047,23 @@ CONTRACT_TYPE
 // <LANDING_FOLLOWS>
 ///////////////////////////////////////
 //
-// Unmanned <PLANETARYBODY> Landing
+// Unmanned Landing
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = FirstUnmanned<PLANETARYBODY>Landing
-	group = SpaceTuxGroup
-	title = Land a probe on the <PLANETARYBODY>!
-	// description = Time to do an unmanned landing on the <PLANETARYBODY>!
+	name = First Unmanned Landing
+	group = STGUnmannedMissions
+	title = Land a probe on the @STGUnmannedMissions:UnmannedMissionPlanet !
+	// description = Time to do an unmanned landing on the @STGUnmannedMissions:UnmannedMissionPlanet !
 
 	topic = landing
-	subject = <PLANETARYBODY>Srf
-	motivation = want to be sure the <PLANETARYBODY> will support a ship (isn't made out of dust) before we send a manned craft.  This will be a monumental achievement.
+	subject = Srv_@STGUnmannedMissions:UnmannedMissionPlanet
+	motivation = want to be sure the @STGUnmannedMissions:UnmannedMissionPlanet will support a ship (isn't made out of dust) before we send a manned craft.  This will be a monumental achievement.
 
 	notes = Complete the following:
-	synopsis = Launch an unmanned probe and have it land on the <PLANETARYBODY>
+	synopsis = Launch an unmanned probe and have it land on the @STGUnmannedMissions:UnmannedMissionPlanet
 	completedMessage = Future generations will remember this day.
 	agent = Space Penguins, Inc
 	// agent = Research & Development Department
@@ -663,12 +1071,12 @@ CONTRACT_TYPE
 	minExpiry = 50.0
 	maxExpiry = 100.0
 	// Contract deadline in days.  Default is no deadline.
-	deadline = 100
+	deadline = @STGUnmannedMissions:travelTime * 10
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = <PLANETARYBODY>
-	maxCompletions = 1
+	targetBody = @STGUnmannedMissions:UnmannedMissionPlanet
+//	maxCompletions = 1
 	maxSimultaneous = 1
 	rewardScience = 25.0
 	rewardReputation = 20.0
@@ -676,57 +1084,88 @@ CONTRACT_TYPE
 	advanceFunds = Random(19000.0, 21000.0)
 	// weight = 10.0
 	
-	REQUIREMENT
+//	DATA
+//	{
+//		type = List<CelestialBody>
+//		requiredValue = false
+//		impactedPlanets = $impactedPlanets
+//	}
+//	
+	DATA
 	{
-		name = ReachSpace<NUM_5>
-		type = ReachSpace
+		type = String
+
+		uniquenessCheck = GROUP_ALL
+		requiredValue = true
+
+		uid = FirstUnmannedLanding:@STGUnmannedMissions:UnmannedMissionPlanet.Name()
 	}
-	// If we've landed, then no need to land again 
-	REQUIREMENT
-	{
-		name = Nolanding<NUM_5>
-		type = Landing
-		targetBody = <PLANETARYBODY>
-		invertRequirement = true
-	}
+
+//	BEHAVIOUR
+//	{
+//		name = Expression
+//		type = Expression
+//		
+//		CONTRACT_COMPLETED_SUCCESS
+//		{
+//			type = List<CelestialBody>
+//			
+//			@/impactedPlanets = @/impactedPlanets.Add(@/targetBody)
+//			$impactedPlanets = @/impactedPlanets
+//		}
+//	}	
+	
+	
 	
 	REQUIREMENT
 	{
-	    name = CompleteContract<NUM_6>
-	    type = CompleteContract
-
-	    // The type of contract being checked.  This can either be a
-	    // ContractConfigurator contract type or a standard contract type (class).
-	    contractType = First<PLANETARYBODY>Impact
-
-	    // The minimum number of times the given contract type must have been
-	    // completed before the requirement is met.
-	    // Default = 1
-	    minCount = 1
-
-	    // The maximum number of times the given contract type can be completed
-	    // before the requirement will no longer be met.
-	    // Default = Infinite
-	    // maxCount = 5
-
-	    // The amount of time after the last instance of the contract was
-	    // complete before we can attempt again. Can specify
-	    // values in years (y), days (d), hours (h), minutes (m), seconds (s)
-	    // or any combination of those.
-	    cooldownDuration = 10d
+		name = ReachSpace_5
+		type = ReachSpace
 	}
+	REQUIREMENT
+	{
+		name = Expession_HasSurface
+		type = Expression
+		
+		expression = @/targetBody.HasSurface()
+	}
+	
+	// If we've landed, then no need to land again 
+	REQUIREMENT
+	{
+		name = Nolanding_5
+		type = Landing
+		targetBody = @/targetBody
+		invertRequirement = true
+	}
+	
+//	REQUIREMENT
+//	{
+//		name = Expression_6
+//		type = Expression
+//		
+//		expression = @/impactedPlanets.Contains(@/targetBody) == true
+//	}
+
+	// Make sure they did a flyby first
+	REQUIREMENT
+	{
+		name = FlyBy
+		type = FlyBy
+	}
+	
 	
 <REMOTETECH>
 <ANTENNARANGE>
 	
 	PARAMETER
 	{
-		name = VPG_<NUM_6>
+		name = VPG__6
 		type = VesselParameterGroup
 
 		PARAMETER
 		{
-			name = HasCrew<NUM_6>
+			name = HasCrew_6
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
@@ -735,7 +1174,7 @@ CONTRACT_TYPE
 
 		PARAMETER
 		{
-			name = ReachState<NUM_6>
+			name = ReachState_6
 			type = ReachState
 			situation = LANDED
 			completeInSequence = true
@@ -746,35 +1185,35 @@ CONTRACT_TYPE
 
 ///////////////////////////////////////
 //
-// Unmanned <PLANETARYBODY> Targeted Landing
+// Unmanned Targeted Landing
 //
 ///////////////////////////////////////
 
 CONTRACT_TYPE
 {
-	name = TargetedUnmanned<PLANETARYBODY>Landing
-	group = SpaceTuxGroup
-	title = Land a probe on the <PLANETARYBODY> at a specified target!
-	// description = Time to do a targeted, unmanned landing on the <PLANETARYBODY>!  This will be a monumental achievement.
+	name = Targeted Unmanned Landing
+	group = STGUnmannedMissions
+	title = Land a probe on the @STGUnmannedMissions:UnmannedMissionPlanet at a specified target!
+	// description = Time to do a targeted, unmanned landing on the @STGUnmannedMissions:UnmannedMissionPlanet !  This will be a monumental achievement.
 
 	topic = landing
-	subject = <PLANETARYBODY>Srf
-	motivation = want to be get close-up pictures of a projected landing site for a future manned landing on <PLANETARYBODY>. 
+	subject = Srf_@STGUnmannedMissions:UnmannedMissionPlanet
+	motivation = want to be get close-up pictures of a projected landing site for a future manned landing on @STGUnmannedMissions:UnmannedMissionPlanet . 
 
 	notes = Complete the following:
-	synopsis = Launch an unmanned probe and have it land on the <PLANETARYBODY>
+	synopsis = Launch an unmanned probe and have it land on the @STGUnmannedMissions:UnmannedMissionPlanet
 	completedMessage = Future generations will remember this day.
 	agent = Space Penguins, Inc
 
 	minExpiry = 50.0
 	maxExpiry = 100.0
 	// Contract deadline in days.  Default is no deadline.
-	deadline = 100
+	deadline = @STGUnmannedMissions:travelTime * 10
 	cancellable = true
 	declinable = true
 	prestige = Significant
-	targetBody = <PLANETARYBODY>
-	maxCompletions = 5
+	targetBody = @STGUnmannedMissions:UnmannedMissionPlanet
+//	maxCompletions = 5
 	maxSimultaneous = 2
 	rewardScience = 25.0
 	rewardReputation = 25.0
@@ -782,51 +1221,72 @@ CONTRACT_TYPE
 	advanceFunds = Random(19000.0, 21000.0)
 	// weight = 10.0
 	
-	REQUIREMENT
+//	DATA
+//	{
+//		type = List<CelestialBody>
+//		requiredValue = false
+//		impactedPlanets = $impactedPlanets
+//	}
+	
+	DATA
 	{
-		name = ReachSpace<NUM_7>
-		type = ReachSpace
+		type = String
+
+		uniquenessCheck = GROUP_ALL
+		requiredValue = true
+
+		uid = TargetedUnmannedLanding:@STGUnmannedMissions:UnmannedMissionPlanet.Name()
 	}
+
+//	BEHAVIOUR
+//	{
+//		name = Expression
+//		type = Expression
+//		
+//		CONTRACT_COMPLETED_SUCCESS
+//		{
+//			type = List<CelestialBody>
+//			@/impactedPlanets = @/impactedPlanets.Add(@/targetBody)
+//			$impactedPlanets = @/impactedPlanets
+//		}
+//	}	
+	
 	
 	REQUIREMENT
 	{
-	    name = CompleteContract<NUM_7>
-	    type = CompleteContract
-
-	    // The type of contract being checked.  This can either be a
-	    // ContractConfigurator contract type or a standard contract type (class).
-	    contractType = First<PLANETARYBODY>Impact
-
-	    // The minimum number of times the given contract type must have been
-	    // completed before the requirement is met.
-	    // Default = 1
-	    minCount = 1
-
-	    // The maximum number of times the given contract type can be completed
-	    // before the requirement will no longer be met.
-	    // Default = Infinite
-	    // maxCount = 5
-
-	    // The amount of time after the last instance of the contract was
-	    // complete before we can attempt again. Can specify
-	    // values in years (y), days (d), hours (h), minutes (m), seconds (s)
-	    // or any combination of those.
-	    cooldownDuration = 10d
+		name = ReachSpace_7
+		type = ReachSpace
 	}
+	
+//	REQUIREMENT
+//	{
+//		name = Expression_7
+//		type = Expression
+//
+//		expression = @/impactedPlanets.Contains(@/targetBody) == true
+//	}
+
+	// Make sure they did a flyby first
+	REQUIREMENT
+	{
+		name = FlyBy
+		type = FlyBy
+	}
+	
 	
 <REMOTETECH>
 <ANTENNARANGE>
 
 	PARAMETER
 	{
-		name = VPG_<NUM_7>
+		name = VPG__7
 		type = VesselParameterGroup
 		// nightingale - I'd let the title default itself in most cases
 		//  title = Vessel: Any; Duration: 1 year
 
 		PARAMETER
 		{
-			name = HasCrew<NUM_7>
+			name = HasCrew_7
 			type = HasCrew
 			maxCrew = 0
 			minCrew = 0
@@ -834,7 +1294,7 @@ CONTRACT_TYPE
 
 		PARAMETER
 		{
-			name = VisitWaypoint<NUM_8>
+			name = VisitWaypoint_8
 			type = VisitWaypoint
 			index = 0
 			distance = 5000
@@ -843,7 +1303,7 @@ CONTRACT_TYPE
 
 		PARAMETER
 		{
-			name = ReachState<NUM_7>
+			name = ReachState_7
 			type = ReachState
 			situation = LANDED
 			completeInSequence = true
@@ -852,7 +1312,7 @@ CONTRACT_TYPE
 	}
 	BEHAVIOUR
 	{
-		name = WaypointGenerator<NUM_8>
+		name = WaypointGenerator_8
 		type = WaypointGenerator
 		
 		// Use this to generate a waypoint with random coordinates
