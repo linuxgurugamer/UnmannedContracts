@@ -116,6 +116,7 @@ CONTRACT_TYPE
 //trace = true
 	name = First Unmanned Flyby
 	group = STGUnmannedMissions
+	genericTitle = Do an unmanned flyby
 	title = Perform an unmanned @STGUnmannedMissions:UnmannedMissionPlanet flyby mission.
 
 	// description = Send a probe to perform a flyby of the @STGUnmannedMissions:UnmannedMissionPlanet !  This will be a strong demonstration of our capabilities, and an important 'first' for our space program! 
@@ -177,6 +178,7 @@ CONTRACT_TYPE
 	{
 		type = String
 
+		hidden = true
 		uniquenessCheck = GROUP_ALL
 		requiredValue = true
 
@@ -282,6 +284,7 @@ CONTRACT_TYPE
 {
 	name = First Impact
 	group = STGUnmannedMissions
+	genericTitle = Crash a probe on a planet
 	title = Crash a probe on @STGUnmannedMissions:UnmannedMissionPlanet !
 	// description = We want to get larger, clearer closeup pictures.  To do this, we need to send a probe to crash on @STGUnmannedMissions:UnmannedMissionPlanet .  This will be a monumental achievement.
 
@@ -337,6 +340,7 @@ CONTRACT_TYPE
 	{
 		type = String
 
+		hidden = true
 		uniquenessCheck = GROUP_ALL
 		requiredValue = true
 
@@ -413,6 +417,7 @@ CONTRACT_TYPE
 {
 	name = Targeted Impact
 	group = STGUnmannedMissions
+	genericTitle = Crash a probe on a target
 	title = Crash a probe on @STGUnmannedMissions:UnmannedMissionPlanet on a target!
 	// description = We want to get larger, clearer closeup pictures of a potential landing site.  To do this, we need to send a probe to crash on @STGUnmannedMissions:UnmannedMissionPlanet and impact at the specified location.  This will be a monumental achievement.
 
@@ -445,6 +450,8 @@ CONTRACT_TYPE
 	DATA
 	{
 		type = List<CelestialBody>
+
+		hidden = true
 		requiredValue = false
 		impactedPlanets = $impactedPlanets
 	}
@@ -490,6 +497,7 @@ CONTRACT_TYPE
 	{
 		type = String
 
+		hidden = true
 		uniquenessCheck = GROUP_ALL
 		requiredValue = true
 
@@ -625,6 +633,7 @@ CONTRACT_TYPE
 {
 	name = First Orbital Satellite
 	group = STGUnmannedMissions
+	genericTitle = Orbit an unmanned satellite around another planet
 	title = Orbit the first artificial satellite around @STGUnmannedMissions:UnmannedMissionPlanet
 	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet . This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
@@ -682,6 +691,7 @@ CONTRACT_TYPE
 	{
 		type = String
 
+		hidden = true
 		uniquenessCheck = GROUP_ALL
 		requiredValue = true
 
@@ -724,6 +734,7 @@ CONTRACT_TYPE
 {
 	name = Polar Orbital Satellite
 	group = STGUnmannedMissions
+	genericTitle = Put a probe in a polar orbit around another planet
 	title = Orbit the first artificial satellite in a polar orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
 	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet .  This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
@@ -780,6 +791,7 @@ CONTRACT_TYPE
 	{
 		type = String
 
+		hidden = true
 		uniquenessCheck = GROUP_ALL
 		requiredValue = true
 
@@ -833,6 +845,7 @@ CONTRACT_TYPE
 {
 	name = Equatorial OrbitalSat
 	group = STGUnmannedMissions
+	genericTitle = Put a probe in a equatorial orbit around another planet
 	title = Orbit the first artificial satellite in an equatorial orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
 	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet .  This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
@@ -889,6 +902,7 @@ CONTRACT_TYPE
 	{
 		type = String
 
+		hidden = true
 		uniquenessCheck = GROUP_ALL
 		requiredValue = true
 
@@ -943,6 +957,7 @@ CONTRACT_TYPE
 {
 	name = Kolniya Orbital Satellite
 	group = STGUnmannedMissions
+	genericTitle = Put a probe in a Kolniya orbit around another planet
 	title = Orbit the first artificial satellite in a Kolniya orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
 	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet . This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
@@ -999,6 +1014,7 @@ CONTRACT_TYPE
 	{
 		type = String
 
+		hidden = true
 		uniquenessCheck = GROUP_ALL
 		requiredValue = true
 
@@ -1055,6 +1071,7 @@ CONTRACT_TYPE
 {
 	name = First Unmanned Landing
 	group = STGUnmannedMissions
+	genericTitle = Land a probe on another planet
 	title = Land a probe on the @STGUnmannedMissions:UnmannedMissionPlanet !
 	// description = Time to do an unmanned landing on the @STGUnmannedMissions:UnmannedMissionPlanet !
 
@@ -1095,6 +1112,7 @@ CONTRACT_TYPE
 	{
 		type = String
 
+		hidden = true
 		uniquenessCheck = GROUP_ALL
 		requiredValue = true
 
@@ -1124,9 +1142,10 @@ CONTRACT_TYPE
 	}
 	REQUIREMENT
 	{
-		name = Expession_HasSurface
+		name = Expression_HasSurface
 		type = Expression
 		
+		title = Planet has surface
 		expression = @/targetBody.HasSurface()
 	}
 	
@@ -1193,6 +1212,7 @@ CONTRACT_TYPE
 {
 	name = Targeted Unmanned Landing
 	group = STGUnmannedMissions
+	genericTitle = Land a probe on another planet at a specified target
 	title = Land a probe on the @STGUnmannedMissions:UnmannedMissionPlanet at a specified target!
 	// description = Time to do a targeted, unmanned landing on the @STGUnmannedMissions:UnmannedMissionPlanet !  This will be a monumental achievement.
 
@@ -1232,6 +1252,7 @@ CONTRACT_TYPE
 	{
 		type = String
 
+		hidden = true
 		uniquenessCheck = GROUP_ALL
 		requiredValue = true
 

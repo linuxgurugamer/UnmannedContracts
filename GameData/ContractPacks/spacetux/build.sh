@@ -1,22 +1,23 @@
-#!/bin/bash
+#!/bin/bash 
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	os=linux
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-	os=osx
-elif [[ "$OSTYPE" == "cygwin" ]]; then
-        # POSIX compatibility layer and Linux environment emulation for Windows
-		os=cygwin
-	else
-		exit
-fi
-
-if [ "$os" != "cygwin" ]; then
-	root=$HOME
-else
-	root="\\\\~"
-	root=$HOME
-fi
+#if [[ "$OSTYPE" == "linux-gnu" ]]; then
+#	os=linux
+#elif [[ "$OSTYPE" == "darwin"* ]]; then
+#	os=osx
+#elif [[ "$OSTYPE" == "cygwin" ]]; then
+#        # POSIX compatibility layer and Linux environment emulation for Windows
+#		os=cygwin
+#	else
+#		exit
+#fi
+#
+#if [ "$os" != "cygwin" ]; then
+#	root=$HOME
+#else
+#	root="\\\\~"
+#	root=$HOME
+#fi
+root=/d/Users/jbb
 
 gasbodies="Jool"
 bodies="Minmus Moho Eve Gilly Duna Ike   Dres Jool Laythe  Tylo Vall Bop Pol   Eeloo"
@@ -67,7 +68,7 @@ files=""
 #cnt=570
 #bodycnt=-1
 #for i in $bodies; do
-for i in 1; do
+#for i in 1; do
 #	bodycnt=$((bodycnt+1))
 	fname=${i}_unmanned.tmp
 	fname2=${i}_unmanned2.tmp
@@ -78,13 +79,14 @@ for i in 1; do
 	if [ "$1" = "clean" ]; then
 		rm -f $fnameFinal
 		rm -f Makefile
-		continue
+		#continue
 	else
 		cp $template $fname
 		echo $template $fname
-#		deadline=${deadlines[$bodycnt]}
+#		#deadline=${deadlines[$bodycnt]}
 
-deadline=10000
+		deadline=10000
+
 		if [ "$os" = "osx" ]; then
 			sed  -i "" "s/<PLANETARYBODY>/${i}/g" $fname
 			sed  -i "" "s/<DEADLINE>/$deadline/g" $fname
@@ -93,14 +95,15 @@ deadline=10000
 			sed  -i "s/<DEADLINE>/$deadline/g" $fname
 
 		fi
-cp $fname $fnameFinal
+
+		cp $fname $fnameFinal
 		if [ "$os" = "osx" ]; then
 			sed -i "" "s/<REMOTETECH>//g" $fnameFinal
 			sed -i "" "s/<ANTENNARANGE>//g" $fnameFinal
 		else
 			sed -i "s/<REMOTETECH>//g" $fnameFinal
 			sed -i "s/<ANTENNARANGE>//g" $fnameFinal
-		fi
+		 fi
 		
 #		cnt=$((cnt+1))
 #		for n in `seq 1 6`; do
@@ -146,8 +149,9 @@ cp $fname $fnameFinal
 #		
 #		IFS=$oIFS
 #		rm $fname $fname2
+		rm -f $fname
 	fi
-done
+#done
 
 if [ "$1" != "clean" ]; then
 #	for i in $gasbodies; do

@@ -1,33 +1,30 @@
 #!/bin/bash
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	os=linux
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-	os=osx
-elif [[ "$OSTYPE" == "cygwin" ]]; then
-        # POSIX compatibility layer and Linux environment emulation for Windows
-		os=cygwin
-	else
-		exit
-fi
+#if [[ "$OSTYPE" == "linux-gnu" ]]; then
+#	os=linux
+#elif [[ "$OSTYPE" == "darwin"* ]]; then
+#	os=osx
+#elif [[ "$OSTYPE" == "cygwin" ]]; then
+#        # POSIX compatibility layer and Linux environment emulation for Windows
+#		os=cygwin
+#	else
+#		exit
+#fi
 
 echo -e "\n\n"
-if [ "$os" != "cygwin" ]; then
-	root=$HOME
-else
-	root="/cygdrive/d/users/jbb"
-fi
+#if [ "$os" != "cygwin" ]; then
+#	root=$HOME
+#else
+	root="/d/Users/jbb"
+#fi
 releasedir=${root}/release
 installdir=${root}/install
 mkdir -p $releasedir
 
-major=0
-major=`cat version-number.txt`
-minor=`cat build-number.txt`
-patch=`cat patch-number.txt`
 
-echo "Version:   ${major}.${minor}.${patch}"
 cat UnmannedContracts.version
+echo -e "\nEnter version: "
+read version
 echo -e "\n\nOK to proceed (Y/n): "
 read yn
 [ "$yn" = 'n' -o "$yn" = "N" ] && exit
@@ -47,10 +44,10 @@ files=""
 for i in $*; do
 	files="$files GameData/ContractPacks/${basedir}/$i"
 done
-files="Gamedata/ContractPacks/Spacetux/SharedAssets Gamedata/ContractPacks/Spacetux/UnmannedContracts"
+files="Gamedata/spacetux Gamedata/ContractPacks/Spacetux/UnmannedContracts"
 cd $installdir
 
-rm -f  ${releasedir}/${mod}-${major}.${minor}.${patch}.zip
+rm -f  ${releasedir}/${mod}-${version}.zip
 
-echo "zip -9r ${releasedir}/${mod}-${major}.${minor}.${patch}.zip  $files"
-zip -9r ${releasedir}/${mod}-${major}.${minor}.${patch}.zip  $files
+echo "zip -9r ${releasedir}/${mod}-${version}.zip  $files"
+zip -9r ${releasedir}/${mod}-${version}.zip  $files
