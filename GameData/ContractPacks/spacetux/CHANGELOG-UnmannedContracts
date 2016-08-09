@@ -38,3 +38,12 @@
 			specific antennas for missions, will now let the player decide what to do.  
 			This will all the player to create satellite networks for coverage instead 
 			of relying on a single powerful antenna
+0.3.19.1
+	Updated version file for 1.1
+0.3.20
+	Updated version info
+0.3.21
+	Updated for new version of ContractConfigurator
+0.3.22
+	Added checks for impossible (in-game) Kolniya orbits
+	Added Tundra orbits
