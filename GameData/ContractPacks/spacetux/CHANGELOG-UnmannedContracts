@@ -47,3 +47,8 @@
 0.3.22
 	Added checks for impossible (in-game) Kolniya orbits
 	Added Tundra orbits
+0.3.23
+	Disabled Kolniya and Tundra orbits
+0.3.24
+	Enabled the Kolniya & Tundra orbits
+	Shortened some descriptions to fit in the Mission Control
