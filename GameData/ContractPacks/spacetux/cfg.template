@@ -958,21 +958,21 @@ CONTRACT_TYPE
  	name = Kolniya Orbital Satellite
  	group = STGUnmannedMissions
  	genericTitle = Put a probe in a Kolniya orbit at a planet
- 	title = Orbit the first satellite in a Kolniya orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
- 	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet . This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+ 	title = Orbit the first satellite in a Kolniya orbit around @STGUnmannedMissions:KolniyaMissionPlanet .
+ 	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:KolniyaMissionPlanet . This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
  
  	topic = satellites
- 	subject = @STGUnmannedMissions:UnmannedMissionPlanet
+ 	subject = @STGUnmannedMissions:KolniyaMissionPlanet
  	motivation = test
  
  	notes = Complete the following:
- 	synopsis = Put a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
- 	completedMessage = You did it! We've placed a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet !  This will be a day long remembered.
+ 	synopsis = Put a satellite in orbit around @STGUnmannedMissions:KolniyaMissionPlanet .
+ 	completedMessage = You did it! We've placed a satellite in orbit around @STGUnmannedMissions:KolniyaMissionPlanet !  This will be a day long remembered.
  	agent = Space Penguins, Inc
  	cancellable = true
  	declinable = true
  	prestige = Significant
- 	targetBody = @STGUnmannedMissions:UnmannedMissionPlanet
+ 	targetBody = @STGUnmannedMissions:KolniyaMissionPlanet
  	deadline = @STGUnmannedMissions:travelTime * 10
  //	maxCompletions = 1
  	maxSimultaneous = 1
@@ -1071,21 +1071,21 @@ CONTRACT_TYPE
  	name = Tundra Orbital Satellite
  	group = STGUnmannedMissions
 	genericTitle = Put a probe in a Tundra orbit at another planet
- 	title = Orbit the first satellite in a Tundra orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
- 	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet . This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
+ 	title = Orbit the first satellite in a Tundra orbit around @STGUnmannedMissions:TundraMissionPlanet .
+ 	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:TundraMissionPlanet . This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
  
  	topic = satellites
- 	subject = @STGUnmannedMissions:UnmannedMissionPlanet
+ 	subject = @STGUnmannedMissions:TundraMissionPlanet
  	motivation = test
  
  	notes = Complete the following:
- 	synopsis = Put a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet .
- 	completedMessage = You did it! We've placed a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet !  This will be a day long remembered.
+ 	synopsis = Put a satellite in orbit around @STGUnmannedMissions:TundraMissionPlanet .
+ 	completedMessage = You did it! We've placed a satellite in orbit around @STGUnmannedMissions:TundraMissionPlanet !  This will be a day long remembered.
  	agent = Space Penguins, Inc
  	cancellable = true
  	declinable = true
  	prestige = Significant
- 	targetBody = @STGUnmannedMissions:UnmannedMissionPlanet
+ 	targetBody = @STGUnmannedMissions:TundraMissionPlanet
  	deadline = @STGUnmannedMissions:travelTime * 10
  //	maxCompletions = 1
  	maxSimultaneous = 1
