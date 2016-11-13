@@ -634,7 +634,7 @@ CONTRACT_TYPE
 	name = First Orbital Satellite
 	group = STGUnmannedMissions
 	genericTitle = Orbit an unmanned satellite at another planet
-	title = Orbit the first satellite around @STGUnmannedMissions:UnmannedMissionPlanet
+	title = Put a probe in orbit around @STGUnmannedMissions:UnmannedMissionPlanet
 	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet . This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
 	topic = satellites
@@ -735,7 +735,7 @@ CONTRACT_TYPE
 	name = Polar Orbital Satellite
 	group = STGUnmannedMissions
 	genericTitle = Put a probe in a polar orbit at another planet
-	title = Orbit a satellite in a polar orbit at @STGUnmannedMissions:UnmannedMissionPlanet .
+	title = Put a probe in a polar orbit at @STGUnmannedMissions:UnmannedMissionPlanet .
 	// description = We want you to place a satellite in orbit around @STGUnmannedMissions:UnmannedMissionPlanet .  This will be a significant 'first' for our space program! The satellite doesn't need to be anything fancy, just cobble something together and put it up there!
 
 	topic = satellites
