@@ -30,7 +30,7 @@ build:
 	./build.sh
 
 install:	$(OBJECTS)
-	@cd /d/Users/jbb/github/SpaceTux/GameData/Spacetux && make install
+	@cd /d/Users/jbb/github/SpaceTux/GameData/Spacetux && git checkout master && make install
 
 	@rm -fr $(INSTALLDIR)/$(MODDIR)/*
 	@mkdir -p $(INSTALLDIR)/$(MODDIR)
