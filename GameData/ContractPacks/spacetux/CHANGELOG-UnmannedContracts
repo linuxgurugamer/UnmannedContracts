@@ -52,3 +52,7 @@
 0.3.24
 	Enabled the Kolniya & Tundra orbits
 	Shortened some descriptions to fit in the Mission Control
+0.3.25
+	Updated for 1.2.1
+0.3.26
+	Added crew requirement = 0 for first unmanned to orbit and back

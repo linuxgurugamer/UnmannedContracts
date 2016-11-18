@@ -1,0 +1,7 @@
+Using Cygwin on Windows, these instructions are minimal, but would probably work on Linux:
+
+./build.sh
+make install
+make release
+
+make clean

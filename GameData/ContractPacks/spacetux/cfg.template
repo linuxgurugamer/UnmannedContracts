@@ -77,10 +77,17 @@ CONTRACT_TYPE
 	
 	PARAMETER
 	{
-		name = VesselParameterGroup_1
+		name = VesselParameterGroup_0
 		type = VesselParameterGroup
 		completeInSequence = true
-	
+
+		PARAMETER
+		{
+			name = HasCrew_0
+			type = HasCrew
+			maxCrew = 0
+			minCrew = 0
+		}	
 		PARAMETER
 		{
 			name = Orbit
@@ -215,7 +222,6 @@ CONTRACT_TYPE
 //		expression = @/localPlanetFlybys.Contains(@/targetBody) == false
 //
 //	}
-
 	REQUIREMENT
 	{
 		name = Orbit
